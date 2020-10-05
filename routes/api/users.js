@@ -9,6 +9,9 @@ const User = require("../../models/User");
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
+
+
+
 router.get("/test", (req, res) => {
   res.json({ msg: "This is the user route" });
 });
@@ -99,5 +102,45 @@ router.post("/login", (req, res) => {
       });
     });
 });
+
+router.get('/:id', (req, res) => {
+  // debugger
+  User.findById(req.params.id)
+    .then(user => res.json(user))
+    .catch(err => 
+      res.status(404).json(err));
+});
+
+const createBcrypt = (password) => {
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(password, salt, (err, hash) => {
+      if (err) throw err;
+      return hash;
+    });
+  });
+};
+
+router.patch('/:id', (req, res) => {
+  User.findById(req.params.id)
+    .then(user1 => {
+      if (req.body.username) {
+        User.findOne({ username: req.body.username }).then(user2 => {
+          if (user2) {
+            return res.json({error: 'username already exists'});
+          } else {
+            user1.username = req.body.username;
+          }
+        });
+      }
+      if (req.body.password) {
+        user1.password = createBcrypt(req.body.password);
+      }
+      user1.save()
+        .then(user => res.json(user))
+        .catch(err => res.json(err));
+    });
+});
+
+
 
 module.exports = router;
