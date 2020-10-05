@@ -104,7 +104,6 @@ router.post("/login", (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  // debugger
   User.findById(req.params.id)
     .then(user => res.json(user))
     .catch(err => 
@@ -121,40 +120,26 @@ const createBcrypt = (password) => {
   });
 };
 
-router.patch('/:id', (req, res) => {
-  const id = req.params.id;
-  if (req.body.password) {
-    User.findByIdAndUpdate(id, {password: createBcrypt(req.body.password)}, 
-      {new: true}, (err, user) => {
-        res.json(user);
-      });      
+router.patch('/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
+  const { id } = req.params;
+  const { username, password } = req.body;
+  console.log(req.body);
+  if (password) {
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(password, salt, (err, hash) => {
+        if (err) throw err;
+        User.findByIdAndUpdate( id, { password: hash } )
+          .then(() => res.status(202).json("Password changed accepted"))
+          .catch(err => res.status(500).json(err));
+      });
+    });
   }
-  User.findByIdAndUpdate(id, req.body, {new: true}, (err, user) => {
-    res.json(user);
-  });
+  if (username) {
+    debugger;
+    User.findByIdAndUpdate(id, { username: username }, {new: true}, (err, user) => {
+      res.json(user);
+    });
+  }
 });
-
-// router.patch('/:id', (req, res) => {
-//   User.findById(req.params.id)
-//     .then(user1 => {
-//       if (req.body.username) {
-//         User.findOne({ username: req.body.username }).then(user2 => {
-//           if (user2) {
-//             return res.json({error: 'username already exists'});
-//           } else {
-//             user1.username = req.body.username;
-//           }
-//         });
-//       }
-//       if (req.body.password) {
-//         user1.password = createBcrypt(req.body.password);
-//       }
-//       user1.save()
-//         .then(user => res.json(user))
-//         .catch(err => res.json(err));
-//     });
-// });
-
-
 
 module.exports = router;
