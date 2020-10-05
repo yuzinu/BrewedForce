@@ -8,13 +8,12 @@ const validatecoffeeInput = require('../../validation/coffees');
 
 router.get('/', (req, res) => {
     Coffee.find()
-        .sort({ date: -1 })
         .then(coffees => res.json(coffees))
         .catch(err => res.status(404).json({ nocoffeesfound: 'No coffees found' }));
 });
 
 router.get('/:coffee_id', (req, res) => {
-    Coffee.find({ user: req.params.user_id })
+    Coffee.find({ coffee: req.params.coffee_id })
         .then(coffees => res.json(coffees))
         .catch(err =>
             res.status(404).json({ nocoffeesfound: 'No coffees found with that name' }
