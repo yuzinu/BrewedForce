@@ -112,34 +112,48 @@ router.get('/:id', (req, res) => {
 });
 
 const createBcrypt = (password) => {
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(password, salt, (err, hash) => {
+  return bcrypt.genSalt(10, (err, salt) => {
+    return bcrypt.hash(password, salt, (err, hash) => {
       if (err) throw err;
+      // debugger
       return hash;
     });
   });
 };
 
 router.patch('/:id', (req, res) => {
-  User.findById(req.params.id)
-    .then(user1 => {
-      if (req.body.username) {
-        User.findOne({ username: req.body.username }).then(user2 => {
-          if (user2) {
-            return res.json({error: 'username already exists'});
-          } else {
-            user1.username = req.body.username;
-          }
-        });
-      }
-      if (req.body.password) {
-        user1.password = createBcrypt(req.body.password);
-      }
-      user1.save()
-        .then(user => res.json(user))
-        .catch(err => res.json(err));
-    });
+  const id = req.params.id;
+  if (req.body.password) {
+    User.findByIdAndUpdate(id, {password: createBcrypt(req.body.password)}, 
+      {new: true}, (err, user) => {
+        res.json(user);
+      });      
+  }
+  User.findByIdAndUpdate(id, req.body, {new: true}, (err, user) => {
+    res.json(user);
+  });
 });
+
+// router.patch('/:id', (req, res) => {
+//   User.findById(req.params.id)
+//     .then(user1 => {
+//       if (req.body.username) {
+//         User.findOne({ username: req.body.username }).then(user2 => {
+//           if (user2) {
+//             return res.json({error: 'username already exists'});
+//           } else {
+//             user1.username = req.body.username;
+//           }
+//         });
+//       }
+//       if (req.body.password) {
+//         user1.password = createBcrypt(req.body.password);
+//       }
+//       user1.save()
+//         .then(user => res.json(user))
+//         .catch(err => res.json(err));
+//     });
+// });
 
 
 
