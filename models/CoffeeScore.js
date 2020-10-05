@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const CoffeeScoreSchema = new Schema({
   user: {
-    type: Schema.Type.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'users'
   },
   shop: {
@@ -11,7 +11,7 @@ const CoffeeScoreSchema = new Schema({
     required: true
   },
   coffee: {
-    type: Schema.Type.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'coffees'
   },
   aroma: {
