@@ -6,14 +6,14 @@ const passport = require('passport');
 const coffee = require('../../models/coffee');
 const validatecoffeeInput = require('../../validation/coffees');
 
-router.get('/coffee', (req, res) => {
+router.get('/', (req, res) => {
     Coffee.find()
         .sort({ date: -1 })
         .then(coffees => res.json(coffees))
         .catch(err => res.status(404).json({ nocoffeesfound: 'No coffees found' }));
 });
 
-router.get('/coffee/:coffee_id', (req, res) => {
+router.get('/:coffee_id', (req, res) => {
     Coffee.find({ user: req.params.user_id })
         .then(coffees => res.json(coffees))
         .catch(err =>
