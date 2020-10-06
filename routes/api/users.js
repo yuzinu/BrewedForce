@@ -97,6 +97,12 @@ router.post("/login", (req, res) => {
     });
 });
 
+router.get('/', (req, res) => {
+  User.find()
+      .then(users => res.json(users))
+      .catch(err => res.status(404).json({ nousersfound: 'No users found' }));
+});
+
 router.get('/:id', (req, res) => {
   User.findById(req.params.id)
     .then(user => res.json(user))
@@ -107,6 +113,11 @@ router.get('/:id', (req, res) => {
 router.patch('/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
   const { id } = req.params;
   const { username, password } = req.body;
+
+  if (req.user.id !== req.params.id) {
+    return res.status(401).json("Unauthorized");
+  }
+
   console.log(req.body);
   if (password) {
     bcrypt.genSalt(10, (err, salt) => {
