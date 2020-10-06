@@ -23,3 +23,5 @@ const App = () => (
 );
 
 export default App;
+
+// <a href="https://www.freepik.com/photos/coffee">Coffee photo created by freepik - www.freepik.com</a>

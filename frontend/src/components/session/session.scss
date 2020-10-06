@@ -1,8 +1,11 @@
-.login-form {
-    height: 30%;
-    width: 30%;
-    margin: auto;
-    background: #DCE4D3;
+.login-form, .signup-form {
+    height: 40%;
+    width: 20%;
+    position: absolute;
+    top: 25%;
+    right: 20%;
+    background-image: url("https://i.imgur.com/qAr9Fue.jpg");
+    background-size: cover;
     color: #2C371F;
     border-radius: 5px;
     display: flex;
@@ -41,4 +44,8 @@
             color: #DCE4D3;
         }
     }
+}
+
+.signup-form {
+    height: 40%;
 }
