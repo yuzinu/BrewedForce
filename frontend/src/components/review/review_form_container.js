@@ -3,6 +3,7 @@ import ReviewForm from './review_form';
 
 const mSTP = (state, ownProps) => {
   // user = get current user
+  debugger
   return {
     // user
   };
