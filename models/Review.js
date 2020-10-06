@@ -18,6 +18,11 @@ const ReviewSchema = new Schema({
         ref: 'coffees'
     },
 
+    coffee_score: {
+        type: Schema.Types.ObjectId,
+        ref: 'coffee_scores'
+    },
+  
     rating: {
         type: Number,
         required: true
