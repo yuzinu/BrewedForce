@@ -36,4 +36,4 @@ const ReviewSchema = new Schema({
     timestamps: true
 });
 
-module.exports = Tweet = mongoose.model('Review', ReviewSchema);
+module.exports = Review = mongoose.model('Review', ReviewSchema);
