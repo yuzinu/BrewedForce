@@ -9,9 +9,6 @@ const User = require("../../models/User");
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
-
-
-
 router.get("/test", (req, res) => {
   res.json({ msg: "This is the user route" });
 });
@@ -73,22 +70,19 @@ router.post("/login", (req, res) => {
     return res.status(400).json(errors);
   }
 
-  // const username = req.body.username;
-  const email = req.body.email;
+  const identifier = req.body.identifier;
   const password = req.body.password;
 
-  User.findOne({ email })
+  User.findOne({ "$or": [{ username: identifier }, { email: identifier }]})
     .then(user => {
       if (!user) {
-        // errors.username = "This user does not exist";
-        errors.email = "User not found";
+        errors.identifier = "User not found";
         return res.status(400).json(errors);
       }
 
       bcrypt.compare(password, user.password).then(isMatch => {
         if (isMatch) {
           const payload = { id: user.id, username: user.username };
-  
           jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
             res.json({
               success: true,
@@ -110,16 +104,6 @@ router.get('/:id', (req, res) => {
       res.status(404).json(err));
 });
 
-const createBcrypt = (password) => {
-  return bcrypt.genSalt(10, (err, salt) => {
-    return bcrypt.hash(password, salt, (err, hash) => {
-      if (err) throw err;
-      // debugger
-      return hash;
-    });
-  });
-};
-
 router.patch('/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
   const { id } = req.params;
   const { username, password } = req.body;
@@ -135,7 +119,6 @@ router.patch('/:id', passport.authenticate('jwt', {session: false}), (req, res) 
     });
   }
   if (username) {
-    debugger;
     User.findByIdAndUpdate(id, { username: username }, {new: true}, (err, user) => {
       res.json(user);
     });
