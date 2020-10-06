@@ -36,10 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-.app-container {
-  height: 100%;
-  display: flex;
-  background: #AAAAAA;
-}
-

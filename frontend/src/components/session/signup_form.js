@@ -56,31 +56,39 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-        <form className="signup-form" onSubmit={this.handleSubmit}>
-            <h1>Sign Up</h1> 
-            <input type="text"
-              value={this.state.email}
-              onChange={this.update('email')}
-              placeholder="Email"
-            />
-            <input type="text"
-              value={this.state.username}
-              onChange={this.update('username')}
-              placeholder="Username"
-            />
-            <input type="password"
-              value={this.state.password}
-              onChange={this.update('password')}
-              placeholder="Password"
-            />
-            <input type="password"
-              value={this.state.password2}
-              onChange={this.update('password2')}
-              placeholder="Confirm Password"
-            />
-          <button className="login-form-submit-button">Submit</button>
-          {this.renderErrors()}
+      <div className="login-form-container">
+        <form onSubmit={this.handleSubmit}>
+          <div className="login-form">
+            <br/>
+              <input type="text"
+                value={this.state.email}
+                onChange={this.update('email')}
+                placeholder="Email"
+              />
+            <br/>
+              <input type="text"
+                value={this.state.username}
+                onChange={this.update('username')}
+                placeholder="Username"
+              />
+            <br/>
+              <input type="password"
+                value={this.state.password}
+                onChange={this.update('password')}
+                placeholder="Password"
+              />
+            <br/>
+              <input type="password"
+                value={this.state.password2}
+                onChange={this.update('password2')}
+                placeholder="Confirm Password"
+              />
+            <br/>
+            <input type="submit" value="Submit" />
+            {this.renderErrors()}
+          </div>
         </form>
+      </div>
     );
   }
 }

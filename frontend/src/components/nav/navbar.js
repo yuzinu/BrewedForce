@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './sidebar.scss';
+import { Link } from 'react-router-dom'
+import './navbar.css'
 
-class SideBar extends React.Component {
+class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.logoutUser = this.logoutUser.bind(this);
@@ -24,7 +24,7 @@ class SideBar extends React.Component {
         );
       } else {
         return (
-            <div className="sidebar-buttons">
+            <div>
                 <Link to={'/signup'}>Signup</Link>
                 <Link to={'/login'}>Login</Link>
             </div>
@@ -34,12 +34,12 @@ class SideBar extends React.Component {
 
   render() {
       return (
-        <div className="sidebar">
-            <h1 className="sidebar-header">BF</h1>
+        <div>
+            <h1>BrewedForce</h1>
             { this.getLinks() }
         </div>
       );
   }
 }
 
-export default SideBar;
+export default NavBar;

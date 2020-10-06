@@ -19,19 +19,8 @@ export default class Coffee extends React.Component {
   componentDidMount() {
     const { fetchCoffee, fetchCoffeeScores } = this.props;
     const coffeeId = this.props.match.params.coffeeId;
-    fetchCoffee(coffeeId);
-    fetchCoffeeScores(coffeeId)
-      .then(() => this.calculateAverageScores());
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.match.params !== this.props.match.params) {
-      const { fetchCoffee, fetchCoffeeScores } = this.props;
-      const coffeeId = this.props.match.params.coffeeId;
-      fetchCoffee(coffeeId);
-      fetchCoffeeScores(coffeeId)
-        .then(() => this.calculateAverageScores());
-    }
+    fetchCoffee(coffeeId)
+      .then(() => fetchCoffeeScores(coffeeId))
   }
 
   calculateAverageScores() {
@@ -44,6 +33,7 @@ export default class Coffee extends React.Component {
     let totalAftertaste = 0;
     let i = 0;
     coffeeScores.forEach(score => {
+      debugger
       if (score.coffee === coffeeId) {
         i++;
         totalAroma += score.aroma;
@@ -63,20 +53,22 @@ export default class Coffee extends React.Component {
   }
 
   render() {
-    const { coffee, coffeeScores } = this.props;
+    const { coffee } = this.props;
     const { avgAroma, avgAcidity, avgBody, avgFlavor, avgAftertaste } = this.state;
-    if (!coffee || !coffeeScores) return null;
+    if (!coffee) return null;
+    // debugger
     return (
-      <div className='coffee-show-container'>
-        <h1 className='coffee-show-title'>{coffee.name}</h1>
-        <span className='coffee-show-origin'>{coffee.origin}</span>
-        <span className='coffee-show-source'>{coffee.source}</span>
-        <ul className='coffee-score-list'>
-          <li className='coffee-score-item'>Aroma: {avgAroma}</li>
-          <li className='coffee-score-item'>Acidity: {avgAcidity}</li>
-          <li className='coffee-score-item'>Body: {avgBody}</li>
-          <li className='coffee-score-item'>Flavor: {avgFlavor}</li>
-          <li className='coffee-score-item'>Aftertaste: {avgAftertaste}</li>
+      <div>
+        <h1>{coffee.name}</h1>
+        <span>{coffee.origin}</span>
+        <span>{coffee.source}</span>
+        <button onClick={this.calculateAverageScores}>avg scores</button>
+        <ul>
+          <li>{avgAroma}</li>
+          <li>{avgAcidity}</li>
+          <li>{avgBody}</li>
+          <li>{avgFlavor}</li>
+          <li>{avgAftertaste}</li>
         </ul>
       </div>
     )

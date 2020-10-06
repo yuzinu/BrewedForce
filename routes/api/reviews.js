@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     Review.find()
     .sort({date: -1})
     .then(reviews => res.json(reviews))
-    .catch(err => res.status(404).json({ noReviewsFound: 'No reviews found'}));
+    .catch(err => res.status(404).json({ noReviewsFound: 'No reviews found'}))
 });
 
 router.get('/user/:user_id', (req, res) => {
