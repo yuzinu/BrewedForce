@@ -1,15 +1,21 @@
+require("dotenv").config();
 const express = require("express");
+const path = require("path");
+const cors = require("cors");
 const app = express();
 const db = require("./config/keys").mongoURI;
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 
+app.use(cors());
+
 const User = require("./models/User");
 const Coffee = require("./models/Coffee");
 const CoffeeScore = require("./models/CoffeeScore");
 const Review = require("./models/Review");
 
+const fileUploadRoutes = require("./routes/api/fileUploadRoutes");
 const users = require("./routes/api/users");
 const coffees = require("./routes/api/coffees");
 const coffee_scores = require("./routes/api/coffee_scores");
@@ -25,7 +31,8 @@ require("./config/passport")(passport);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-  
+
+app.use("/api/photos", fileUploadRoutes);
 app.use("/api/users", users);
 app.use("/api/coffees", coffees);
 app.use("/api/coffee_scores", coffee_scores);
