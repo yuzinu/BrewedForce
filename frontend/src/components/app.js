@@ -7,7 +7,7 @@ import MainPage from './main/main_page';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import UserContainer from './user/user_container';
-import ReviewFormContainer from './review/review_form';
+import ReviewFormContainer from './review/review_form_container';
 import CoffeeContainer from './coffee/coffee_container';
 
 const App = () => (
