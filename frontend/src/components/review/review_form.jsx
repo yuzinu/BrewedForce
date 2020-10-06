@@ -1,4 +1,5 @@
 import React from 'react';
+import './review_form.css';
 
 export default class ReviewForm extends React.Component {
 
@@ -7,19 +8,27 @@ export default class ReviewForm extends React.Component {
     this.state = {
       coffee: '',
       text: '',
-      rating: null,
-      aroma: null,
-      acidity: null,
-      body: null,
-      flavor: null,
-      aftertaste: null
+      rating: 5,
+      aroma: 10,
+      acidity: 10,
+      body: 10,
+      flavor: 10,
+      aftertaste: 10,
+      awsLinks: []
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlePhotoInput = this.handlePhotoInput.bind(this);
   }
 
   handleChange(field) {
     return e => {
       this.setState({ [field]: e.currentTarget.value })
     }
+  }
+
+  handlePhotoInput(e) {
+    // convert photo(s) into aws links
+    // push links as strings into this.state.awsLinks
   }
 
   handleSubmit(e) {
@@ -36,7 +45,7 @@ export default class ReviewForm extends React.Component {
         <h1>Review Form</h1>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor='coffee'>Coffee</label>
-          <input type="text" id='coffee' value={coffee}/>
+          <input type="text" id='coffee' value={coffee} onChange={this.handleChange('coffee')}/>
 
           <label htmlFor="rating">Rating</label>
           <select id="rating" value={rating} onChange={this.handleChange('rating')}>
@@ -125,11 +134,14 @@ export default class ReviewForm extends React.Component {
 
           <label htmlFor="text">Review</label>
           <textarea id="text" value={text} onChange={this.handleChange('text')}/>
+          
+          {/* PHOTO UPLOAD PLACEHOLDER */}
+          <label htmlFor="photo">Upload Photo</label>
+          <input type="file" multiple onChange={this.handlePhotoInput}/>
+
+          <button>Submit Review</button>
         </form>
 
-        {/* PHOTO UPLOAD PLACEHOLDER */}
-        <label htmlFor="photo">Upload Photo</label>
-        <input type="file"/>
 
       </div>
     )
