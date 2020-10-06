@@ -7,7 +7,7 @@ class MainPage extends React.Component {
       <div>
         <h1>THE Coffee Bible</h1>
         <footer>
-          Copyright &copy; 2020 BrewedForce by the Brewners Group
+          Copyright &copy; 2020 BrewedForce
         </footer>
       </div>
     );
