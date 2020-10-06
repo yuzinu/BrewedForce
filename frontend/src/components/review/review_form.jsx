@@ -33,10 +33,31 @@ export default class ReviewForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // SUBMIT REVIEW FUNCTION
+    const { 
+      user, createCoffeeScore, 
+      createReview } = this.props;
+    const { 
+      coffee, aroma, acidity, body, flavor, aftertaste, 
+      rating, text
+    } = this.state;
+    createCoffeeScore({
+      user,
+      // shop, // REPLACE WITH SHOP ID
+      coffee,
+      aroma,
+      acidity,
+      body,
+      flavor,
+      aftertaste
+    })
+    createReview({
+      rating,
+      text
+    })
   }
 
   render() {
+    const { coffees } = this.props;
     const { 
       coffee, text, rating, aroma, acidity, body, flavor, aftertaste 
     } = this.state;
@@ -45,7 +66,12 @@ export default class ReviewForm extends React.Component {
         <h1>Review Form</h1>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor='coffee'>Coffee</label>
-          <input type="text" id='coffee' value={coffee} onChange={this.handleChange('coffee')}/>
+          <select id="coffee" value={coffee} onChange={this.handleChange('coffee')}>
+            {coffees.map(coffee => {
+              // debugger
+              return <option key={coffee.id} value={coffee._id}>{coffee.name}</option>
+            })}
+          </select>
 
           <label htmlFor="rating">Rating</label>
           <select id="rating" value={rating} onChange={this.handleChange('rating')}>
