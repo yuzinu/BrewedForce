@@ -53,7 +53,6 @@ router.post('/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
 
-
     const newCoffeeScore = new CoffeeScore({
       user: req.body.user.id,
       shop: req.body.shop.id,
