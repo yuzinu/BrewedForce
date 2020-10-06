@@ -71,38 +71,21 @@ router.post('/',
   }
 );
 
-router.patch('/:id', (req, res) => {
-  CoffeeScore.findById(req.params.id)
-    .then(coffee_score => res.json(coffee_score))
-    .catch(err =>
-      res.status(404).json({ nocoffeescorefound: 'No coffee score found with that ID' })
-    );
-});
-
-router.patch('/:id',
-  passport.authenticate('jwt', { session: false }),
+router.patch('/:id', passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    // CoffeeScore.findById(req.params.id).
-    // const { errors, isValid } = validateCoffeeScoreInput(req.body);
+    const { id } = req.params;
+
+    const { errors, isValid } = validateReviewInput(req.body);
 
     if (!isValid) {
       return res.status(400).json(errors);
     }
 
-    const newCoffeeScore = new CoffeeScore({
-      user: req.user.id,
-      shop: req.shop.id,
-      coffee: req.coffee.id,
-      aroma: req.body.aroma,
-      acidity: req.body.acidity,
-      body: req.body.body,
-      flavor: req.body.flavor,
-      aftertaste: req.body.aftertaste
-    });
 
-    newCoffeeScore
-      .save()
-      .then(coffee_score => res.json(coffee_score));
+    CoffeeScore.findByIdAndUpdate(id, req.body, { new: true }, (err, coffee_score) => {
+      res.json(coffee_score)
+    })
+      .then(() => res.status(202).json('Coffee score updated successfully.'))
   }
 );
 
