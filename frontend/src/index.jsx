@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   window.fetchCoffee = fetchCoffee;
   window.dispatch = store.dispatch;
-
+  window.getState = store.getState;
 
 
 
