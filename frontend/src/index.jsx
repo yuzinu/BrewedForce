@@ -1,3 +1,4 @@
+import style from './index.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
@@ -38,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   window.fetchCoffee = fetchCoffee;
   window.dispatch = store.dispatch;
-
+  window.getState = store.getState;
 
 
 

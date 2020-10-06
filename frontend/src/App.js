@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+require('./App.scss');
+
 
 
 function App() {
