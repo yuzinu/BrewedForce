@@ -18,26 +18,21 @@ const ReviewSchema = new Schema({
         ref: 'coffees'
     },
 
-    rating: {
-      type: Number,
-      required: true
-    },
-  
     coffee_score: {
         type: Schema.Types.ObjectId,
         ref: 'coffee_scores'
+    },
+  
+    rating: {
+        type: Number,
+        required: true
     },
 
     text: {
         type: String,
         required: true
     },
-
-    photo: {
-        type: Schema.Types.ObjectId,
-        ref: 'photos'
-    },
-
+}, {
     timestamps: true
 });
 
