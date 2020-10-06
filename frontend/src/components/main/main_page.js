@@ -1,12 +1,13 @@
 import React from 'react';
+require('./main_page.scss');
 
 class MainPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>THE Coffee Bible</h1>
-        <footer>
+      <div className="main-page">
+        <h1 className="coffee-header">Brewed Force</h1>
+        <footer className="coffee-footer">
           Copyright &copy; 2020 BrewedForce
         </footer>
       </div>

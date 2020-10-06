@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+require('./session.scss');
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -47,27 +48,26 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <br/>
-              <input type="text"
-                value={this.state.identifier}
-                onChange={this.update('identifier')}
-                placeholder="Email or username"
-              />
-            <br/>
-              <input type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                placeholder="Password"
-              />
-            <br/>
-            <input type="submit" value="Submit" />
-            {this.renderErrors()}
-          </div>
-        </form>
-      </div>
+
+      <form className="login-form" onSubmit={this.handleSubmit}>
+          <h1>Log in or Sign Up!</h1>
+          <input type="text"
+            value={this.state.identifier}
+            onChange={this.update('identifier')}
+            placeholder="Email or username"
+          />
+
+          <input type="password"
+            value={this.state.password}
+            onChange={this.update('password')}
+            placeholder="Password"
+          />
+          
+          <button className="login-form-submit-button">Submit</button>
+          {this.renderErrors()}
+
+      </form>
+
     );
   }
 }
