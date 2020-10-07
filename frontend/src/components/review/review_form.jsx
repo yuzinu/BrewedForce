@@ -69,16 +69,16 @@ export default class ReviewForm extends React.Component {
     // debugger
     return (
       <div className='review-form-container'>
-        <h1 className='review-form-title'>Coffee Review Form</h1>
+        <h1 className='review-form-title'></h1>
         <form onSubmit={this.handleSubmit} className='review-form'>
-          <label htmlFor='coffee' className='coffee-input-label'>Coffee</label>
+          <label htmlFor='coffee' className='coffee-input-label'>COFFEE</label>
           <select className='coffee-input' id="coffee" value={coffee} onChange={this.handleChange('coffee')}>
             {coffees.map(coffee => {
               return <option key={coffee._id} value={coffee._id}>{coffee.name}</option>
             })}
           </select>
 
-          <label htmlFor="aroma" className='aroma-input-label'>Aroma</label>
+          <label htmlFor="aroma" className='aroma-input-label'>AROMA</label>
           <select className='aroma-input' id="aroma" value={aroma} onChange={this.handleChange('aroma')}>
             <option disabled>Please select aroma</option>
             <option value="10">10</option>
@@ -93,7 +93,7 @@ export default class ReviewForm extends React.Component {
             <option value="1">1</option>
           </select>
 
-          <label htmlFor="acidity" className='acidity-input-label'>Acidity</label>
+          <label htmlFor="acidity" className='acidity-input-label'>ACIDITY</label>
           <select className='acidity-input' id="acidity" value={acidity} onChange={this.handleChange('acidity')}>
             <option disabled>Please select acidity</option>
             <option value="10">10</option>
@@ -108,7 +108,7 @@ export default class ReviewForm extends React.Component {
             <option value="1">1</option>
           </select>
 
-          <label htmlFor="body" className='body-input-label'>Body</label>
+          <label htmlFor="body" className='body-input-label'>BODY</label>
           <select className='body-input' id="body" value={body} onChange={this.handleChange('body')}>
             <option disabled>Please select body</option>
             <option value="10">10</option>
@@ -123,7 +123,7 @@ export default class ReviewForm extends React.Component {
             <option value="1">1</option>
           </select>
 
-          <label htmlFor="flavor" className='flavor-input-label'>Flavor</label>
+          <label htmlFor="flavor" className='flavor-input-label'>FLAVOR</label>
           <select className='flavor-input' id="flavor" value={flavor} onChange={this.handleChange('flavor')}>
             <option disabled>Please select flavor</option>
             <option value="10">10</option>
@@ -138,7 +138,7 @@ export default class ReviewForm extends React.Component {
             <option value="1">1</option>
           </select>
 
-          <label htmlFor="aftertaste" className='aftertaste-input-label'>Aftertaste</label>
+          <label htmlFor="aftertaste" className='aftertaste-input-label'>AFTERTASTE</label>
           <select className='aftertaste-input' id="aftertaste" value={aftertaste} onChange={this.handleChange('aftertaste')}>
             <option disabled>Please select aftertaste</option>
             <option value="10">10</option>
@@ -153,7 +153,7 @@ export default class ReviewForm extends React.Component {
             <option value="1">1</option>
           </select>
 
-          <label htmlFor="rating" className='rating-input-label'>Shop Rating</label>
+          <label htmlFor="rating" className='rating-input-label'>SHOP RATING</label>
           <select className='rating-input' id="rating" value={rating} onChange={this.handleChange('rating')}>
             <option disabled>Please select rating</option>
             <option value="5">5</option>
@@ -163,7 +163,7 @@ export default class ReviewForm extends React.Component {
             <option value="1">1</option>
           </select>
 
-          <label htmlFor="text" className='text-input-label'>Shop Review</label>
+          <label htmlFor="text" className='text-input-label'>SHOP REVIEW</label>
           <textarea 
             className='text-input' 
             id="text" 
@@ -178,7 +178,7 @@ export default class ReviewForm extends React.Component {
           <label htmlFor="photo">Upload Photo(s)</label>
           <input type="file" multiple onChange={this.handlePhotoInput}/>
 
-          <button className='review-submit-btn'>Submit Review</button>
+          <button className='review-submit-btn'>SUBMIT REVIEW</button>
         </form>
 
 
