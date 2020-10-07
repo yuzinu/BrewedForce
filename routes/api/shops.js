@@ -1,35 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Shop = require('../../models/Shop');
-const keys = require('../../config/keys')
-import {Client} from '@googlemaps/google-maps-services-js';
+const keys = require('../../config/keys');
+const rp = require('request-promise');
 
 router.get('/', (req, res) => {
-    Coffee.find()
-        .then(coffees => res.json(coffees))
-        .catch(err => res.status(404).json({ nocoffeesfound: 'No coffees found' }));
-});
-
-client
-.placesNearby({
-  params: {
-    location: {lat: params.location.latitude, lng: params.location.longitude},
-    key: keys.googleKey,
-    rankby: "prominence",
-    type: "cafe",
-  },
-  timeout: 1000,
+  // const location = req.params.location;
+  const params = {
+    method: 'get',
+    url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.7215,-74.0000&radius=200&rankby=prominence&type=cafe&key=${keys.googleKey}`,
+    json: true
+  };
+  rp(params)
+    .then(data => res.status(200).json(data.results))
+    .catch(err => res.status(400).json(err));
 })
-.then((res) => {
-  ;
-  console.log(res);
-})
-.catch((e) => {
-  ;
-  console.log(e);
-});
-
-
 
 module.exports = router;

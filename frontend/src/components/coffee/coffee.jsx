@@ -21,23 +21,27 @@ export default class Coffee extends React.Component {
   }
 
   componentDidMount() {
+    debugger
     const { fetchCoffee, fetchCoffeeScores } = this.props;
     const coffeeId = this.props.match.params.coffeeId;
     fetchCoffee(coffeeId);
     fetchCoffeeScores(coffeeId)
       .then(() => this.calculateAverageScores());
-    
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.match.params !== this.props.match.params) {
-      const { fetchCoffee, fetchCoffeeScores } = this.props;
-      const coffeeId = this.props.match.params.coffeeId;
-      fetchCoffee(coffeeId);
-      fetchCoffeeScores(coffeeId)
-        .then(() => this.calculateAverageScores());
+    debugger
+    // if (prevProps.match.params !== this.props.match.params) {
+    //   const { fetchCoffee, fetchCoffeeScores } = this.props;
+    //   const coffeeId = this.props.match.params.coffeeId;
+    //   fetchCoffee(coffeeId);
+    //   fetchCoffeeScores(coffeeId)
+    //     .then(() => this.calculateAverageScores());
+    // }
+    if (prevProps.geolocation !== this.props.geolocation) {
+      debugger
+      this.fetchNearbyShops();
     }
-    this.fetchNearbyShops();
   }
 
   calculateAverageScores() {
@@ -69,7 +73,6 @@ export default class Coffee extends React.Component {
   }
 
   fetchNearbyShops() {
-    
     if(!this.props.geolocation) return "No shops nearby";
 
     const params = {
@@ -77,16 +80,17 @@ export default class Coffee extends React.Component {
         latitude: this.props.geolocation.latitude,
         longitude: this.props.geolocation.longitude
       }
+      // location: `${this.props.geolocation.latitude},${this.props.geolocation.longitude}`
     };
     this.props.fetchNearbyShops(params)
   }
 
   renderNearbyShops() {
     let shops;
-    if (!this.props.nearbyShops) {
+    if (Object.values(this.props.nearbyShops).length === 0) {
       return;
     } else {
-      shops = this.props.nearbyShops.results;
+      shops = this.props.nearbyShops;
     }
     
 
@@ -108,7 +112,6 @@ export default class Coffee extends React.Component {
   }
 
   render() {
-    
     const { coffee, coffeeScores } = this.props;
     const { avgAroma, avgAcidity, avgBody, avgFlavor, avgAftertaste } = this.state;
     if (!coffee || !coffeeScores) return null;
