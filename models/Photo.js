@@ -22,4 +22,5 @@ PhotoSchema.plugin(AutoIncrement, { inc_field: "photo_id" });
 
 module.exports = mongoose.model("Photo", PhotoSchema);
 
-/* The mongoose-sequence creates a commodity collection named 'counters' which keeps track of the auto-incremental number. So during development to reset the go_id back to 1, I just have to drop the counter collection by running db.counters.drop()  */
+/* The mongoose-sequence creates a commodity collection named 'counters' which keeps track of the auto-incremental number.
+So during development to reset the go_id back to 1, I just have to drop the counter collection by running db.counters.drop()  */
