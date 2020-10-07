@@ -25,6 +25,13 @@ export const createCoffeeScore = coffeeScore => {
   }
 }
 
+export const updateCoffeeScore = coffeeScore => {
+  return dispatch => {
+    return CoffeeScoresApiUtil.updateCoffeeScore(coffeeScore)
+      .then(coffeeScore => dispatch(receiveCoffeeScore(coffeeScore)))
+  }
+}
+
 export const fetchCoffeeScores = coffeeId => {
   return dispatch => {
     return CoffeeScoresApiUtil.fetchCoffeeScores(coffeeId)

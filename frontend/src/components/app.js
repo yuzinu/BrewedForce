@@ -8,6 +8,7 @@ import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import UserContainer from './user/user_container';
 import ReviewFormContainer from './review/review_form';
+import EditReviewFormContainer from './review/edit_review_form_container';
 import CoffeeContainer from './coffee/coffee_container';
 
 class App extends React.Component {
@@ -30,23 +31,27 @@ class App extends React.Component {
     const geolocation = this.state.location;
 
     return(
-    <> 
-      <SideBarContainer />
-      <Switch>
-        <AuthRoute exact path="/" component={MainPage} />
-        <AuthRoute exact path="/login" component={LoginFormContainer} />
-        <AuthRoute exact path="/signup" component={SignupFormContainer} />
-        <ProtectedRoute exact path="/users/:userId" component={UserContainer} />
-        <ProtectedRoute exact path="/reviews/review_form" component={ReviewFormContainer} />
-        <Route exact path ="/coffees/:coffeeId"
-          render={(props) => (
-            <CoffeeContainer {...props} geolocation={geolocation}/>
-          )}
-        />
+      <> 
+        <SideBarContainer />
+        <Switch>
+          <AuthRoute exact path="/" component={MainPage} />
+          <AuthRoute exact path="/login" component={LoginFormContainer} />
+          <AuthRoute exact path="/signup" component={SignupFormContainer} />
+          <ProtectedRoute exact path="/users/:userId" component={UserContainer} />
+          <ProtectedRoute exact path="/reviews/review_form" component={ReviewFormContainer} />
+          <ProtectedRoute exact path="/reviews/review_form/:reviewId/edit" component={ReviewFormContainer} />
+          <Route exact path ="/coffees/:coffeeId"
+            render={(props) => (
+              <CoffeeContainer {...props} geolocation={geolocation}/>
+            )}
+          />
 
-        {/* <Route exact path ="/coffees/:coffeeId" component={(location) => <CoffeeContainer location={location} />} /> */}
-      </Switch>
-    </>)}
+          {/* <Route exact path ="/coffees/:coffeeId" component={(location) => <CoffeeContainer location={location} />} /> */}
+        </Switch>
+      </>
+    )}
 };
 
 export default App;
+
+// <a href="https://www.freepik.com/photos/coffee">Coffee photo created by freepik - www.freepik.com</a>

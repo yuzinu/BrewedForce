@@ -15,3 +15,10 @@ export const createReview = review => {
       .then(review => dispatch(receiveReview(review)))
   }
 }
+
+export const updateReview = review => {
+  return dispatch => {
+    return ReviewsApiUtil.updateReview(review)
+      .then(review => dispatch(receiveReview(review)))
+  }
+}
