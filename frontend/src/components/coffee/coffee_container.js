@@ -2,11 +2,15 @@ import { connect } from 'react-redux';
 import Coffee from './coffee';
 import { fetchCoffee } from '../../actions/coffee/coffee_actions';
 import { fetchCoffeeScores } from '../../actions/coffee_score/coffee_score_action';
+import { fetchNearbyShops } from '../../actions/shop/shop_actions';
 
 const mSTP = (state, ownProps) => {
+  debugger
   const coffeeId = ownProps.match.params.coffeeId;
   const coffee = state.entities.coffees[coffeeId];
-  const coffeeScores = state.entities.coffeeScores
+  const coffeeScores = state.entities.coffeeScores;
+  const nearbyShops = state.entities.nearbyShops;
+
   return {
     coffee,
     coffeeScores: Object.values(coffeeScores)
@@ -16,7 +20,8 @@ const mSTP = (state, ownProps) => {
 const mDTP = dispatch => {
   return {
     fetchCoffee: coffeeId => dispatch(fetchCoffee(coffeeId)),
-    fetchCoffeeScores: coffeeId => dispatch(fetchCoffeeScores(coffeeId))
+    fetchCoffeeScores: coffeeId => dispatch(fetchCoffeeScores(coffeeId)),
+    fetchNearbyShops: params => dispatch(fetchNearbyShops(params))
   };
 };
 
