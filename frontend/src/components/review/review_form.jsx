@@ -1,6 +1,11 @@
 import React from 'react';
 import './review_form.scss';
 
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
 export default class ReviewForm extends React.Component {
 
   constructor(props) {
@@ -8,12 +13,12 @@ export default class ReviewForm extends React.Component {
     this.state = {
       coffee: '',
       text: '',
-      rating: 5,
-      aroma: 10,
-      acidity: 10,
-      body: 10,
-      flavor: 10,
-      aftertaste: 10,
+      rating: '',
+      aroma: '',
+      acidity: '',
+      body: '',
+      flavor: '',
+      aftertaste: '',
       awsLinks: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,7 +31,8 @@ export default class ReviewForm extends React.Component {
 
   handleChange(field) {
     return e => {
-      this.setState({ [field]: e.currentTarget.value })
+      // debugger
+      this.setState({ [field]: e.target.value })
     }
   }
 
@@ -36,6 +42,7 @@ export default class ReviewForm extends React.Component {
   }
 
   handleSubmit(e) {
+    debugger
     e.preventDefault();
     const { 
       user, createCoffeeScore, 
@@ -69,101 +76,145 @@ export default class ReviewForm extends React.Component {
     // debugger
     return (
       <div className='review-form-container'>
-        <h1 className='review-form-title'>Coffee Review Form</h1>
+        <h1 className='review-form-title'></h1>
         <form onSubmit={this.handleSubmit} className='review-form'>
-          <label htmlFor='coffee' className='coffee-input-label'>Coffee</label>
-          <select className='coffee-input' id="coffee" value={coffee} onChange={this.handleChange('coffee')}>
-            {coffees.map(coffee => {
-              return <option key={coffee._id} value={coffee._id}>{coffee.name}</option>
-            })}
-          </select>
+          
+          <FormControl>
+            <InputLabel id='coffee'>Coffee</InputLabel>
+            <Select
+              className='review-input'
+              labelId="coffee-input-label"
+              value={coffee}
+              onChange={this.handleChange('coffee')}
+            >
+              {coffees.map(coffee => {
+                return <MenuItem value={coffee._id}>{coffee.name}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+          
+          <FormControl>
+            <InputLabel id="aroma-input-label">Aroma</InputLabel>
+            <Select
+              className='review-input'
+              labelId="aroma-input-label"
+              value={aroma}
+              onChange={this.handleChange('aroma')}
+            >
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={1}>1</MenuItem>
+            </Select>
+          </FormControl>
+          
+          <FormControl>
+            <InputLabel id="acidity-input-label">Acidity</InputLabel>
+            <Select
+              className='review-input'
+              labelId="acidity-input-label"
+              value={acidity}
+              onChange={this.handleChange('acidity')}
+            >
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={1}>1</MenuItem>
+            </Select>
+          </FormControl>
+        
+          <FormControl>
+            <InputLabel id="body-input-label">Body</InputLabel>
+            <Select
+              className='review-input'
+              labelId="body-input-label"
+              value={body}
+              onChange={this.handleChange('body')}
+            >
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={1}>1</MenuItem>
+            </Select>
+          </FormControl>
+         
+          <FormControl>
+            <InputLabel id="flavor-input-label">Flavor</InputLabel>
+            <Select
+              className='review-input'
+              labelId="flavor-input-label"
+              value={flavor}
+              onChange={this.handleChange('flavor')}
+            >
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={1}>1</MenuItem>
+            </Select>
+          </FormControl>
+          
+          <FormControl>
+            <InputLabel id="aftertaste-input-label">Aftertaste</InputLabel>
+            <Select
+              className='review-input'
+              labelId="aftertaste-input-label"
+              value={aftertaste}
+              onChange={this.handleChange('aftertaste')}
+            >
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={1}>1</MenuItem>
+            </Select>
+          </FormControl>
 
-          <label htmlFor="aroma" className='aroma-input-label'>Aroma</label>
-          <select className='aroma-input' id="aroma" value={aroma} onChange={this.handleChange('aroma')}>
-            <option disabled>Please select aroma</option>
-            <option value="10">10</option>
-            <option value="9">9</option>
-            <option value="8">8</option>
-            <option value="7">7</option>
-            <option value="6">6</option>
-            <option value="5">5</option>
-            <option value="4">4</option>
-            <option value="3">3</option>
-            <option value="2">2</option>
-            <option value="1">1</option>
-          </select>
+          <FormControl>
+            <InputLabel id="rating-input-label">Shop Rating</InputLabel>
+            <Select
+              className='review-input'
+              labelId="rating-input-label"
+              value={rating}
+              onChange={this.handleChange('rating')}
+            >
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={1}>1</MenuItem>
+            </Select>
+          </FormControl>
 
-          <label htmlFor="acidity" className='acidity-input-label'>Acidity</label>
-          <select className='acidity-input' id="acidity" value={acidity} onChange={this.handleChange('acidity')}>
-            <option disabled>Please select acidity</option>
-            <option value="10">10</option>
-            <option value="9">9</option>
-            <option value="8">8</option>
-            <option value="7">7</option>
-            <option value="6">6</option>
-            <option value="5">5</option>
-            <option value="4">4</option>
-            <option value="3">3</option>
-            <option value="2">2</option>
-            <option value="1">1</option>
-          </select>
-
-          <label htmlFor="body" className='body-input-label'>Body</label>
-          <select className='body-input' id="body" value={body} onChange={this.handleChange('body')}>
-            <option disabled>Please select body</option>
-            <option value="10">10</option>
-            <option value="9">9</option>
-            <option value="8">8</option>
-            <option value="7">7</option>
-            <option value="6">6</option>
-            <option value="5">5</option>
-            <option value="4">4</option>
-            <option value="3">3</option>
-            <option value="2">2</option>
-            <option value="1">1</option>
-          </select>
-
-          <label htmlFor="flavor" className='flavor-input-label'>Flavor</label>
-          <select className='flavor-input' id="flavor" value={flavor} onChange={this.handleChange('flavor')}>
-            <option disabled>Please select flavor</option>
-            <option value="10">10</option>
-            <option value="9">9</option>
-            <option value="8">8</option>
-            <option value="7">7</option>
-            <option value="6">6</option>
-            <option value="5">5</option>
-            <option value="4">4</option>
-            <option value="3">3</option>
-            <option value="2">2</option>
-            <option value="1">1</option>
-          </select>
-
-          <label htmlFor="aftertaste" className='aftertaste-input-label'>Aftertaste</label>
-          <select className='aftertaste-input' id="aftertaste" value={aftertaste} onChange={this.handleChange('aftertaste')}>
-            <option disabled>Please select aftertaste</option>
-            <option value="10">10</option>
-            <option value="9">9</option>
-            <option value="8">8</option>
-            <option value="7">7</option>
-            <option value="6">6</option>
-            <option value="5">5</option>
-            <option value="4">4</option>
-            <option value="3">3</option>
-            <option value="2">2</option>
-            <option value="1">1</option>
-          </select>
-
-          <label htmlFor="rating" className='rating-input-label'>Shop Rating</label>
-          <select className='rating-input' id="rating" value={rating} onChange={this.handleChange('rating')}>
-            <option disabled>Please select rating</option>
-            <option value="5">5</option>
-            <option value="4">4</option>
-            <option value="3">3</option>
-            <option value="2">2</option>
-            <option value="1">1</option>
-          </select>
-
-          <label htmlFor="text" className='text-input-label'>Shop Review</label>
+          {/* <label htmlFor="text" className='text-input-label'>Shop Review</label> */}
           <textarea 
             className='text-input' 
             id="text" 
@@ -171,14 +222,14 @@ export default class ReviewForm extends React.Component {
             onChange={this.handleChange('text')}
             rows='5'
             cols='4'
-            
+            placeholder='Shop Review'
           />
           
           {/* PHOTO UPLOAD PLACEHOLDER */}
-          <label htmlFor="photo">Upload Photo(s)</label>
+          <label htmlFor="photo">Upload Photo</label>
           <input type="file" multiple onChange={this.handlePhotoInput}/>
 
-          <button className='review-submit-btn'>Submit Review</button>
+          <button className='review-submit-btn'>SUBMIT REVIEW</button>
         </form>
 
 
