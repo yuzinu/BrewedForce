@@ -8,7 +8,6 @@
 
     & ul {
         position:absolute;
-        right: 10%;
         height: 100%;
         width: 33%;
         display:flex;
@@ -22,10 +21,6 @@
             text-align: center;
             background: url('https://i.imgur.com/n3NAtVu.jpg');
             background-size: cover;
-
-            &:nth-child(even) {
-                align-self: flex-end;
-            }
         
             & div {
                 padding: 20px 20px;
@@ -34,7 +29,41 @@
     }
 }
 
+.coffee-index-ul-right {
+    right: 10%;
+
+    & a:nth-child(even) {
+        align-self: flex-end;
+    }
+}
+
+.coffee-index-ul-left {
+    left: 10%;
+
+    & a:nth-child(even) {
+        align-self: flex-start;
+    }
+}
+
 .coffee-index-item {
+    height: 200px;
+    width: 200px;
+    color: #ffffff;
+    font-weight: 700;
+    background-color: rgba(0, 0, 0, .4);
+    
+    &-name {
+        font-size: 24px;
+        opacity: 1;
+    }
+
+    &-origin {
+        font-size: 18px;
+        opacity: 1;
+    }
+}
+
+.coffee-index-item-right {
     height: 200px;
     width: 200px;
     color: #ffffff;
