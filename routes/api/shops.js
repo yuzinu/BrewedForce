@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const keys = require('../../config/keys');
 const rp = require('request-promise');
 
-// const Coffee = require('../../models/Coffee');
 router.get('/', (req, res) => {
   // const location = req.params.location;
   const params = {

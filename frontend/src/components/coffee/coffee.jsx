@@ -15,7 +15,7 @@ export default class Coffee extends React.Component {
       avgFlavor: 0,
       avgAftertaste: 0
     }
-    debugger
+    
 
     this.calculateAverageScores = this.calculateAverageScores.bind(this);
   }
@@ -92,7 +92,7 @@ export default class Coffee extends React.Component {
     } else {
       shops = this.props.nearbyShops;
     }
-    debugger
+    
 
     return shops
       .map((shop, i) => {

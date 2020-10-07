@@ -7,9 +7,10 @@ import MainPage from './main/main_page';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import UserContainer from './user/user_container';
-import ReviewFormContainer from './review/review_form';
+import ReviewFormContainer from './review/review_form_container';
 import EditReviewFormContainer from './review/edit_review_form_container';
 import CoffeeContainer from './coffee/coffee_container';
+import CoffeeIndex from './coffee/coffee_index_container';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,18 +35,18 @@ class App extends React.Component {
       <> 
         <SideBarContainer />
         <Switch>
-          <AuthRoute exact path="/" component={MainPage} />
+          <Route exact path="/" component={MainPage} />
           <AuthRoute exact path="/login" component={LoginFormContainer} />
           <AuthRoute exact path="/signup" component={SignupFormContainer} />
           <ProtectedRoute exact path="/users/:userId" component={UserContainer} />
           <ProtectedRoute exact path="/reviews/review_form" component={ReviewFormContainer} />
-          <ProtectedRoute exact path="/reviews/review_form/:reviewId/edit" component={ReviewFormContainer} />
+          <ProtectedRoute exact path="/reviews/review_form/:reviewId/edit" component={EditReviewFormContainer} />
           <Route exact path ="/coffees/:coffeeId"
             render={(props) => (
               <CoffeeContainer {...props} geolocation={geolocation}/>
             )}
           />
-
+          <Route path ="/coffees" component={CoffeeIndex} />
           {/* <Route exact path ="/coffees/:coffeeId" component={(location) => <CoffeeContainer location={location} />} /> */}
         </Switch>
       </>
