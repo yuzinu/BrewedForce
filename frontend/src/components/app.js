@@ -30,23 +30,23 @@ class App extends React.Component {
     const geolocation = this.state.location;
 
     return(
-  <div> 
-    <SideBarContainer />
-    <Switch>
-      <AuthRoute exact path="/" component={MainPage} />
-      <AuthRoute exact path="/login" component={LoginFormContainer} />
-      <AuthRoute exact path="/signup" component={SignupFormContainer} />
-      <ProtectedRoute exact path="/users/:userId" component={UserContainer} />
-      <ProtectedRoute exact path="/reviews/review_form" component={ReviewFormContainer} />
-      <Route exact path ="/coffees/:coffeeId"
-        render={(props) => (
-          <CoffeeContainer {...props} geolocation={geolocation}/>
-        )}
-      />
+    <> 
+      <SideBarContainer />
+      <Switch>
+        <AuthRoute exact path="/" component={MainPage} />
+        <AuthRoute exact path="/login" component={LoginFormContainer} />
+        <AuthRoute exact path="/signup" component={SignupFormContainer} />
+        <ProtectedRoute exact path="/users/:userId" component={UserContainer} />
+        <ProtectedRoute exact path="/reviews/review_form" component={ReviewFormContainer} />
+        <Route exact path ="/coffees/:coffeeId"
+          render={(props) => (
+            <CoffeeContainer {...props} geolocation={geolocation}/>
+          )}
+        />
 
-      {/* <Route exact path ="/coffees/:coffeeId" component={(location) => <CoffeeContainer location={location} />} /> */}
-    </Switch>
-      </div>)}
+        {/* <Route exact path ="/coffees/:coffeeId" component={(location) => <CoffeeContainer location={location} />} /> */}
+      </Switch>
+    </>)}
 };
 
 export default App;
