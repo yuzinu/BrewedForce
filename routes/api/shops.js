@@ -16,4 +16,17 @@ router.get('/', (req, res) => {
     .catch(err => res.status(400).json(err));
 })
 
+router.get('/:id', (req, res) => {
+  console.log(req.params.id);
+  const params = {
+    method: 'get',
+    url: `https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.params.id}&key=${keys.googleKey}`,
+    json: true
+  };
+  rp(params)
+    .then(data => res.status(200).json(data.result))
+    .catch(err => res.status(400).json(err));
+
+})
+
 module.exports = router;

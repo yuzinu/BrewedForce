@@ -8,7 +8,7 @@ const entitiesReducer = combineReducers({
   coffees: coffeesReducer,
   coffeeScores: coffeeScoresReducer,
   reviews: reviewsReducer,
-  nearbyShops: shopsReducer
+  shops: shopsReducer
 })
 
 export default entitiesReducer;

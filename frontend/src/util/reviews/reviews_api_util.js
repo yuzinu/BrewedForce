@@ -7,3 +7,7 @@ export const createReview = review => {
 export const updateReview = review => {
   return axios.patch(`/api/reviews/${review.id}`, review)
 }
+
+export const fetchShopReviews = shopId => {
+  return axios.get(`/api/reviews/shop/${shopId}`)
+}

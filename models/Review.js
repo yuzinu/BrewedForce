@@ -9,7 +9,7 @@ const ReviewSchema = new Schema({
     },
 
     shop: {
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: 'shops'
     },
 
