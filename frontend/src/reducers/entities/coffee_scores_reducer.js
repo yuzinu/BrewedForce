@@ -10,7 +10,6 @@ const coffeeScoresReducer = (state = {}, action) => {
     case RECEIVE_COFFEE_SCORE:
       const score = action.coffeeScore.data;
       newState[score._id] = score;
-      debugger
       return newState;
     case RECEIVE_COFFEE_SCORES:
       const data = action.coffeeScores.data;
