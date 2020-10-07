@@ -1,6 +1,8 @@
 import React from 'react';
-import './coffee.css';
+import './coffee.scss';
 import { Link } from 'react-router-dom';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 
@@ -110,24 +112,45 @@ export default class Coffee extends React.Component {
   render() {
     const { coffee, coffeeScores } = this.props;
     const { avgAroma, avgAcidity, avgBody, avgFlavor, avgAftertaste } = this.state;
+
+    const BorderLinearProgress = withStyles((theme) => ({
+      root: {
+        height: 10,
+        // borderRadius: 5,
+      },
+      colorPrimary: {
+        backgroundColor: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
+      },
+      bar: {
+        // borderRadius: 2,
+        backgroundColor: "rgb(63, 182, 221)",
+      },
+    }))(LinearProgress);
+
     if (!coffee || !coffeeScores) return null;
     return (
       <>
         <div className='coffee-show-container'>
-          <h1 className='coffee-show-title'>{coffee.name}</h1>
-          <span className='coffee-show-origin'>{coffee.origin}</span>
-          <span className='coffee-show-source'>{coffee.source}</span>
+          <div className="coffee-details">
+            <h1 className='coffee-details-title'>{coffee.name}</h1>
+            <span className='coffee-details-origin'>{coffee.origin}</span>
+            <span className='coffee-details-source'>{coffee.source}</span>
+          </div>
           <ul className='coffee-score-list'>
-            <li className='coffee-score-item'>Aroma: {avgAroma}</li>
-            <li className='coffee-score-item'>Acidity: {avgAcidity}</li>
-            <li className='coffee-score-item'>Body: {avgBody}</li>
-            <li className='coffee-score-item'>Flavor: {avgFlavor}</li>
-            <li className='coffee-score-item'>Aftertaste: {avgAftertaste}</li>
+            <li className='coffee-score-item'>Aroma: {avgAroma}
+            <BorderLinearProgress value={avgAroma*10} variant={"determinate"} /></li>
+            <li className='coffee-score-item'>Acidity: {avgAcidity}
+            <BorderLinearProgress value={avgAcidity * 10} variant={"determinate"} /></li>
+            <li className='coffee-score-item'>Body: {avgBody}
+            <BorderLinearProgress value={avgBody * 10} variant={"determinate"} /></li>
+            <li className='coffee-score-item'>Flavor: {avgFlavor}
+            <BorderLinearProgress value={avgFlavor * 10} variant={"determinate"} /></li>
+            <li className='coffee-score-item'>Aftertaste: {avgAftertaste}
+            <BorderLinearProgress value={avgAftertaste * 10} variant={"determinate"} /></li>
           </ul>
         </div>
-        <div>
           {this.renderNearbyShops()}
-        </div>
+        
       </>
     )
   }

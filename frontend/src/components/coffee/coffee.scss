@@ -1,0 +1,52 @@
+.coffee-show-container {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-image: url('https://i.imgur.com/3B5OMG6.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.coffee-details, .coffee-score-list {
+    
+    background-color: rgba(255,255,255,.25);
+    width: 33%;
+    height: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    transition: .6s;
+
+    &:hover {
+        background-color: rgba(255,255,255,.75)
+    }
+
+    & > * {
+        padding-bottom: 30px;
+    }
+    
+}
+
+.coffee-score-list > li > div {
+    margin-top: 12px;
+}
+
+.coffee-details {
+    &-title {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    &-origin {
+        font-size: 24px;
+        font-style: italic;
+    }
+
+    &-source {
+        font-style: italic;
+    }
+}
