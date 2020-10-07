@@ -1,5 +1,8 @@
 import React from 'react';
 import './coffee.css';
+import { Link } from 'react-router-dom';
+
+
 
 export default class Coffee extends React.Component {
 
@@ -12,6 +15,7 @@ export default class Coffee extends React.Component {
       avgFlavor: 0,
       avgAftertaste: 0
     }
+    debugger
 
     this.calculateAverageScores = this.calculateAverageScores.bind(this);
   }
@@ -22,6 +26,7 @@ export default class Coffee extends React.Component {
     fetchCoffee(coffeeId);
     fetchCoffeeScores(coffeeId)
       .then(() => this.calculateAverageScores());
+    
   }
 
   componentDidUpdate(prevProps) {
@@ -32,6 +37,7 @@ export default class Coffee extends React.Component {
       fetchCoffeeScores(coffeeId)
         .then(() => this.calculateAverageScores());
     }
+    this.fetchNearbyShops();
   }
 
   calculateAverageScores() {
@@ -62,23 +68,68 @@ export default class Coffee extends React.Component {
     })
   }
 
+  fetchNearbyShops() {
+    debugger
+    if(!this.props.geolocation) return "No shops nearby";
+
+    const params = {
+      location: {
+        latitude: this.props.geolocation.latitude,
+        longitude: this.props.geolocation.longitude
+      }
+    };
+    this.props.fetchNearbyShops(params)
+  }
+
+  renderNearbyShops() {
+    let shops;
+    if (!this.props.nearbyShops) {
+      return;
+    } else {
+      shops = this.props.nearbyShops.results;
+    }
+    debugger
+
+    return shops
+      .map((shop, i) => {
+      return (
+        <Link to={{
+          pathname: `/shops/${shop.place_id}`,
+          state: {details: shop},
+          }}
+          className='' >
+          <div>{shop.name}</div>
+          {shop.icon}
+        </Link>
+      )
+    }
+    )
+  
+  }
+
   render() {
+    debugger
     const { coffee, coffeeScores } = this.props;
     const { avgAroma, avgAcidity, avgBody, avgFlavor, avgAftertaste } = this.state;
     if (!coffee || !coffeeScores) return null;
     return (
-      <div className='coffee-show-container'>
-        <h1 className='coffee-show-title'>{coffee.name}</h1>
-        <span className='coffee-show-origin'>{coffee.origin}</span>
-        <span className='coffee-show-source'>{coffee.source}</span>
-        <ul className='coffee-score-list'>
-          <li className='coffee-score-item'>Aroma: {avgAroma}</li>
-          <li className='coffee-score-item'>Acidity: {avgAcidity}</li>
-          <li className='coffee-score-item'>Body: {avgBody}</li>
-          <li className='coffee-score-item'>Flavor: {avgFlavor}</li>
-          <li className='coffee-score-item'>Aftertaste: {avgAftertaste}</li>
-        </ul>
-      </div>
+      <>
+        <div className='coffee-show-container'>
+          <h1 className='coffee-show-title'>{coffee.name}</h1>
+          <span className='coffee-show-origin'>{coffee.origin}</span>
+          <span className='coffee-show-source'>{coffee.source}</span>
+          <ul className='coffee-score-list'>
+            <li className='coffee-score-item'>Aroma: {avgAroma}</li>
+            <li className='coffee-score-item'>Acidity: {avgAcidity}</li>
+            <li className='coffee-score-item'>Body: {avgBody}</li>
+            <li className='coffee-score-item'>Flavor: {avgFlavor}</li>
+            <li className='coffee-score-item'>Aftertaste: {avgAftertaste}</li>
+          </ul>
+        </div>
+        <div>
+          {this.renderNearbyShops()}
+        </div>
+      </>
     )
   }
 

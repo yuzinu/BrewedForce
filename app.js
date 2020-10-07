@@ -1,6 +1,7 @@
-require("dotenv").config( {path: './.env'} );
+// require("dotenv").config( {path: './.env'} );
 const path = require("path");
 const express = require("express");
+const cors = require('cors');
 const app = express();
 const db = require("./config/keys").mongoURI;
 const mongoose = require("mongoose");
@@ -12,6 +13,7 @@ const Coffee = require("./models/Coffee");
 const CoffeeScore = require("./models/CoffeeScore");
 const Review = require("./models/Review");
 
+app.use(cors());
 const users = require("./routes/api/users");
 const coffees = require("./routes/api/coffees");
 const coffee_scores = require("./routes/api/coffee_scores");
