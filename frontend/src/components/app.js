@@ -10,6 +10,7 @@ import UserContainer from './user/user_container';
 import ReviewFormContainer from './review/review_form_container';
 import EditReviewFormContainer from './review/edit_review_form_container';
 import CoffeeContainer from './coffee/coffee_container';
+import CoffeeIndex from './coffee/coffee_index_container';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class App extends React.Component {
       <> 
         <SideBarContainer />
         <Switch>
-          <AuthRoute exact path="/" component={MainPage} />
+          <Route exact path="/" component={MainPage} />
           <AuthRoute exact path="/login" component={LoginFormContainer} />
           <AuthRoute exact path="/signup" component={SignupFormContainer} />
           <ProtectedRoute exact path="/users/:userId" component={UserContainer} />
@@ -45,7 +46,7 @@ class App extends React.Component {
               <CoffeeContainer {...props} geolocation={geolocation}/>
             )}
           />
-
+          <Route path ="/coffees" component={CoffeeIndex} />
           {/* <Route exact path ="/coffees/:coffeeId" component={(location) => <CoffeeContainer location={location} />} /> */}
         </Switch>
       </>
