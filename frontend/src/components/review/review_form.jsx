@@ -1,6 +1,5 @@
 import React from 'react';
 import './review_form.scss';
-
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -42,7 +41,6 @@ export default class ReviewForm extends React.Component {
   }
 
   handleSubmit(e) {
-    debugger
     e.preventDefault();
     const { 
       user, createCoffeeScore, 
