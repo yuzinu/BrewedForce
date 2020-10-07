@@ -48,7 +48,7 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-
+    <div className="session-form-container">
       <form className="login-form" onSubmit={this.handleSubmit}>
           <h1>Log in or Sign Up!</h1>
           <input type="text"
@@ -67,7 +67,7 @@ class LoginForm extends React.Component {
           {this.renderErrors()}
 
       </form>
-
+    </div>
     );
   }
 }
