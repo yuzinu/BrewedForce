@@ -12,7 +12,6 @@
   &:hover {
     width: 15%;
     height: 100%;
-    color: #2C371F;
     left: 42.5%;
     line-height: 150px;
 
@@ -24,32 +23,40 @@
   }
 
   &-header {
+    color: #000000;
     width: 100%;
     height: 150px;
     margin: 0px;
     text-align: center;
     line-height: 150px;
     transition: display 3s, width 3s;
+    text-decoration: none;
+    font-size: 36px;
   }
 
   &-buttons {
     display: flex;
     flex-direction: column;
-    text-transform: uppercase;
+    justify-content: space-around;
     width: 0;
     opacity: 0;
-
-    & a {
+    
+    &-link {
+      text-transform: uppercase;
+      font-size: 18px;
       text-align: center;
       width: 100%;
-      color: #2C371F;
+      color: #000000;
       text-decoration: none;
-      padding: 60px 0px;
+      padding: 0px 0px;
       box-sizing: border-box;
       transition: 0.3s;
+      background: none;
+      border: none;
+      line-height: 150px;
 
       &:hover {
-        border-bottom: 2px solid #78905A;
+        border-bottom: 2px solid #000000;
       }
     }
   }
