@@ -15,7 +15,7 @@ export default class Coffee extends React.Component {
       avgFlavor: 0,
       avgAftertaste: 0
     }
-    debugger
+    
 
     this.calculateAverageScores = this.calculateAverageScores.bind(this);
   }
@@ -69,7 +69,7 @@ export default class Coffee extends React.Component {
   }
 
   fetchNearbyShops() {
-    debugger
+    
     if(!this.props.geolocation) return "No shops nearby";
 
     const params = {
@@ -88,7 +88,7 @@ export default class Coffee extends React.Component {
     } else {
       shops = this.props.nearbyShops.results;
     }
-    debugger
+    
 
     return shops
       .map((shop, i) => {
@@ -108,7 +108,7 @@ export default class Coffee extends React.Component {
   }
 
   render() {
-    debugger
+    
     const { coffee, coffeeScores } = this.props;
     const { avgAroma, avgAcidity, avgBody, avgFlavor, avgAftertaste } = this.state;
     if (!coffee || !coffeeScores) return null;

@@ -22,11 +22,11 @@ client
   timeout: 1000,
 })
 .then((res) => {
-  debugger;
+  ;
   console.log(res);
 })
 .catch((e) => {
-  debugger;
+  ;
   console.log(e);
 });
 

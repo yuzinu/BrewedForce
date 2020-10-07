@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     Coffee.findById(req.params.id)
-        .then(coffee => res.json(coffee))
+        .then(data => res.json(data))
         .catch(err =>
             res.status(404).json({ nocoffeefound: 'No coffee found with that ID' })
         );

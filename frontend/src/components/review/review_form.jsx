@@ -68,7 +68,7 @@ export default class ReviewForm extends React.Component {
           <label htmlFor='coffee'>Coffee</label>
           <select id="coffee" value={coffee} onChange={this.handleChange('coffee')}>
             {coffees.map(coffee => {
-              // debugger
+              // 
               return <option key={coffee.id} value={coffee._id}>{coffee.name}</option>
             })}
           </select>

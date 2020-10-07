@@ -6,7 +6,7 @@ const router = express.Router();
 const Photo = require("../../models/Photo");
 const multer = require("multer");
 var AWS = require("aws-sdk");
-debugger;
+;
 AWS.config.update({
   region: aws.region, // Put your aws region here
   accessKeyId: aws.accessKeyId,
