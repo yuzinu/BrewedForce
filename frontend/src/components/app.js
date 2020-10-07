@@ -11,6 +11,7 @@ import ReviewFormContainer from './review/review_form_container';
 import EditReviewFormContainer from './review/edit_review_form_container';
 import CoffeeContainer from './coffee/coffee_container';
 import CoffeeIndex from './coffee/coffee_index_container';
+import ShopContainer from './shop/shop_container';
 
 class App extends React.Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class App extends React.Component {
             )}
           />
           <Route path ="/coffees" component={CoffeeIndex} />
+          <Route path="/shops/:shopId" component={ShopContainer} />
           {/* <Route exact path ="/coffees/:coffeeId" component={(location) => <CoffeeContainer location={location} />} /> */}
         </Switch>
       </>

@@ -71,7 +71,6 @@ export default class ReviewForm extends React.Component {
       coffee, text, rating, aroma, acidity, body, flavor, aftertaste 
     } = this.state;
     if (!coffees) return null;
-    // debugger
     return (
       <div className='review-form-container'>
         <h1 className='review-form-title'></h1>
