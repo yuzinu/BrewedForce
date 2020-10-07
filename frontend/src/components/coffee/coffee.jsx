@@ -21,7 +21,7 @@ export default class Coffee extends React.Component {
   }
 
   componentDidMount() {
-    debugger
+    
     const { fetchCoffee, fetchCoffeeScores } = this.props;
     const coffeeId = this.props.match.params.coffeeId;
     fetchCoffee(coffeeId);
@@ -30,7 +30,7 @@ export default class Coffee extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    debugger
+    
     // if (prevProps.match.params !== this.props.match.params) {
     //   const { fetchCoffee, fetchCoffeeScores } = this.props;
     //   const coffeeId = this.props.match.params.coffeeId;
@@ -39,7 +39,7 @@ export default class Coffee extends React.Component {
     //     .then(() => this.calculateAverageScores());
     // }
     if (prevProps.geolocation !== this.props.geolocation) {
-      debugger
+      
       this.fetchNearbyShops();
     }
   }
