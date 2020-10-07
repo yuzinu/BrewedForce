@@ -27,7 +27,6 @@ export default class Coffee extends React.Component {
     fetchCoffeeScores(coffeeId)
       .then(() => this.calculateAverageScores());
     
-    
   }
 
   componentDidUpdate(prevProps) {
@@ -74,7 +73,10 @@ export default class Coffee extends React.Component {
     if(!this.props.geolocation) return "No shops nearby";
 
     const params = {
-      location: `${this.props.geolocation.latitude},${this.props.geolocation.longitude}`
+      location: {
+        latitude: this.props.geolocation.latitude,
+        longitude: this.props.geolocation.longitude
+      }
     };
     this.props.fetchNearbyShops(params)
   }
