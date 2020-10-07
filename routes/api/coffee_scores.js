@@ -53,14 +53,10 @@ router.post('/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
 
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
-
     const newCoffeeScore = new CoffeeScore({
-      user: req.user.id,
-      shop: req.shop.id,
-      coffee: req.coffee.id,
+      user: req.body.user.id,
+      shop: req.body.shop.id,
+      coffee: req.body.coffee,
       aroma: req.body.aroma,
       acidity: req.body.acidity,
       body: req.body.body,
