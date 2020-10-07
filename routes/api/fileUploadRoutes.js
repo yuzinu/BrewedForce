@@ -1,9 +1,9 @@
 // 'use strict'
-require("dotenv").config();
+require("dotenv").config({ path: '../../.env' });
 const { aws } = require("../../config/keys");
 const express = require("express");
 const router = express.Router();
-const Photo = require("../models/Photo");
+const Photo = require("../../models/Photo");
 const multer = require("multer");
 var AWS = require("aws-sdk");
 
@@ -52,7 +52,6 @@ router.post("/upload", upload.single("file"), function(req, res) {
   });
 
   //Where you want to store your file
-
   var params = {
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: file.originalname,

@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config( {path: './.env'} );
 const path = require("path");
 const express = require("express");
 const app = express();
@@ -16,7 +16,7 @@ const users = require("./routes/api/users");
 const coffees = require("./routes/api/coffees");
 const coffee_scores = require("./routes/api/coffee_scores");
 const reviews = require("./routes/api/reviews");
-const fileUploadRoutes = require("./routes/fileUploadRoutes");
+const fileUploadRoutes = require("./routes/api/fileUploadRoutes");
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
