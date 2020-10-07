@@ -8,6 +8,7 @@ import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import UserContainer from './user/user_container';
 import ReviewFormContainer from './review/review_form_container';
+import EditReviewFormContainer from './review/edit_review_form_container';
 import CoffeeContainer from './coffee/coffee_container';
 
 require('../../src/App.scss');
@@ -21,6 +22,7 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/users/:userId" component={UserContainer} />
       <ProtectedRoute exact path="/reviews/review_form" component={ReviewFormContainer} />
+      <ProtectedRoute exact path="/reviews/review_form/:reviewId/edit" component={ReviewFormContainer} />
       <Route exact path ="/coffees/:coffeeId" component={CoffeeContainer} />
     </Switch>
   </div>
