@@ -139,7 +139,7 @@ export default class Coffee extends React.Component {
       },
       bar: {
         // borderRadius: 2,
-        backgroundColor: "rgb(63, 182, 221)",
+        backgroundColor: "rgb(83, 118, 232)",
       },
     }))(LinearProgress);
 
@@ -165,7 +165,7 @@ export default class Coffee extends React.Component {
             <li className='coffee-score-item'>Aftertaste: {avgAftertaste}
 
             <ScoreBar value={avgAftertaste * 10} variant={"determinate"} /></li>
-          <div className='score-modal-btn-container'>
+          {this.props.loggedIn ? (<div className='score-modal-btn-container'>
             <button onClick={this.handleOpenModal} className='coffee-score-btn'>
               Review Coffee
             </button>
@@ -177,7 +177,7 @@ export default class Coffee extends React.Component {
             >
               <CoffeeScoreFormContainer closeModal={this.handleCloseModal}/>
             </ReactModal>
-          </div>
+          </div>) : (<></>)}
           </ul>
         </div>
           {this.renderNearbyShops()}
