@@ -79,7 +79,7 @@ export default class CoffeeIndex extends React.Component {
         }))(Carousel)
 
         return this.state.coffees ? (
-            <CoffeeCarousel className={"coffee-index-carousel"} animation={"slide"} navButtonsAlwaysVisible={true} timeout={600} autoPlay={false}>
+            <CoffeeCarousel className={"coffee-index-carousel"}  navButtonsAlwaysVisible={true} timeout={400} autoPlay={false}>
                 {this.displayCoffees()}
             </CoffeeCarousel>
         ) : (

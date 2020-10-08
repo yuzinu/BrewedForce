@@ -1,9 +1,9 @@
 import React from 'react';
 import './coffee.scss';
 import { Link } from 'react-router-dom';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import { withStyles } from '@material-ui/core/styles';
 import ReactModal from 'react-modal';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import CoffeeScoreFormContainer from '../coffee_score/coffee_score_container';
 
 
@@ -18,7 +18,7 @@ export default class Coffee extends React.Component {
       avgFlavor: 0,
       avgAftertaste: 0,
       showModal: false
-    }
+    };
     
     this.calculateAverageScores = this.calculateAverageScores.bind(this);
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -44,18 +44,18 @@ export default class Coffee extends React.Component {
       .then(() => this.calculateAverageScores());
   }
   
-  componentDidUpdate(prevProps) {
-    // if (prevProps.match.params !== this.props.match.params) {
-    //   const { fetchCoffee, fetchCoffeeScores } = this.props;
-    //   const coffeeId = this.props.match.params.coffeeId;
-    //   fetchCoffee(coffeeId);
-    //   fetchCoffeeScores(coffeeId)
-    //     .then(() => this.calculateAverageScores());
-    // }
-    if (prevProps.geolocation !== this.props.geolocation) {
-      this.fetchNearbyShops();
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   // if (prevProps.match.params !== this.props.match.params) {
+  //   //   const { fetchCoffee, fetchCoffeeScores } = this.props;
+  //   //   const coffeeId = this.props.match.params.coffeeId;
+  //   //   fetchCoffee(coffeeId);
+  //   //   fetchCoffeeScores(coffeeId)
+  //   //     .then(() => this.calculateAverageScores());
+  //   // }
+  //   if (prevProps.geolocation !== this.props.geolocation) {
+  //     this.fetchNearbyShops();
+  //   }
+  // }
 
   calculateAverageScores() {
     const { coffeeScores } = this.props;
@@ -76,6 +76,7 @@ export default class Coffee extends React.Component {
         totalAftertaste += score.aftertaste;
       }
     });
+
     this.setState({
       avgAroma: (totalAroma/i).toFixed(1),
       avgAcidity: (totalAcidity/i).toFixed(1),
@@ -85,63 +86,63 @@ export default class Coffee extends React.Component {
     });
   }
 
-  fetchNearbyShops() {
-    if(!this.props.geolocation) return "No shops nearby";
+  // fetchNearbyShops() {
+  //   if(!this.props.geolocation) return "No shops nearby";
 
-    const params = {
-      location: {
-        latitude: this.props.geolocation.latitude,
-        longitude: this.props.geolocation.longitude
-      }
-      // location: `${this.props.geolocation.latitude},${this.props.geolocation.longitude}`
-    };
-    this.props.fetchNearbyShops(params)
-  }
+  //   const params = {
+  //     location: {
+  //       latitude: this.props.geolocation.latitude,
+  //       longitude: this.props.geolocation.longitude
+  //     }
+  //     // location: `${this.props.geolocation.latitude},${this.props.geolocation.longitude}`
+  //   };
+  //   this.props.fetchNearbyShops(params);
+  // }
 
-  renderNearbyShops() {
+  // renderNearbyShops() {
     
-    let shops;
-    if (Object.values(this.props.nearbyShops).length === 0) {
-      return;
-    } else {
-      shops = this.props.nearbyShops;
-    }
+  //   let shops;
+  //   if (Object.values(this.props.nearbyShops).length === 0) {
+  //     return;
+  //   } else {
+  //     shops = this.props.nearbyShops;
+  //   }
     
 
-    return shops
-      .map((shop, i) => {
-      return (
-        <Link to={{
-          pathname: `/shops/${shop.place_id}`
-          }}
-          className='' >
-          <div>{shop.name}</div>
-          {shop.icon}
-        </Link>
-      )
-    }
-    )
+  //   return shops
+  //     .map((shop, i) => {
+  //     return (
+  //       <Link to={{
+  //         pathname: `/shops/${shop.place_id}`
+  //         }}
+  //         className='' >
+  //         <div>{shop.name}</div>
+  //         {shop.icon}
+  //       </Link>
+  //     )
+  //   }
+  //   )
   
-  }
+  // }
+
 
   render() {
     const { coffee, coffeeScores } = this.props;
     const { avgAroma, avgAcidity, avgBody, avgFlavor, avgAftertaste } = this.state;
 
-    const root = document.getElementById('root');
     const ScoreBar = withStyles((theme) => ({
       root: {
         height: 10,
-        // borderRadius: 5,
       },
       colorPrimary: {
-        backgroundColor: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
+        backgroundColor: "gray"
       },
       bar: {
-        // borderRadius: 2,
         backgroundColor: "rgb(83, 118, 232)",
       },
     }))(LinearProgress);
+
+    const root = document.getElementById('root');
 
     if (!coffee || !coffeeScores) return null;
     return (
@@ -151,20 +152,23 @@ export default class Coffee extends React.Component {
             <h1 className='coffee-details-title'>{coffee.name}</h1>
             <span className='coffee-details-roaster'>{coffee.roaster}</span>
             <span className='coffee-details-origin'>{coffee.origin}</span>
-            {/* <span className='coffee-details-source'>{coffee.source.username}</span> */}
           </div>
           <ul className='coffee-score-list'>
             <li className='coffee-score-item'>Aroma: {avgAroma}
-            <ScoreBar value={avgAroma*10} variant={"determinate"} /></li>
+            <ScoreBar value={avgAroma * 10} variant="determinate" />
+            </li>
             <li className='coffee-score-item'>Acidity: {avgAcidity}
-            <ScoreBar value={avgAcidity * 10} variant={"determinate"} /></li>
+            <ScoreBar value={avgAcidity * 10} variant="determinate" />
+            </li>
             <li className='coffee-score-item'>Body: {avgBody}
-            <ScoreBar value={avgBody * 10} variant={"determinate"} /></li>
+            <ScoreBar value={avgBody * 10} variant="determinate" />
+            </li>
             <li className='coffee-score-item'>Flavor: {avgFlavor}
-            <ScoreBar value={avgFlavor * 10} variant={"determinate"} /></li>
+            <ScoreBar value={avgFlavor * 10} variant="determinate" />
+            </li>
             <li className='coffee-score-item'>Aftertaste: {avgAftertaste}
-
-            <ScoreBar value={avgAftertaste * 10} variant={"determinate"} /></li>
+            <ScoreBar value={avgAftertaste * 10} variant="determinate" />
+            </li>
           {this.props.loggedIn ? (<div className='score-modal-btn-container'>
             <button onClick={this.handleOpenModal} className='coffee-score-btn'>
               Review Coffee
@@ -180,7 +184,7 @@ export default class Coffee extends React.Component {
           </div>) : (<></>)}
           </ul>
         </div>
-          {this.renderNearbyShops()}
+          {/* {this.renderNearbyShops()} */}
         
       </>
     )
