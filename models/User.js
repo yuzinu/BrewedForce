@@ -15,7 +15,7 @@ const UserSchema = new Schema({
     required: true
   },
   rank: {
-    type: String
+    type: Number,
   }
 }, {
   timestamps: true

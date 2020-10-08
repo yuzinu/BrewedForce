@@ -5,10 +5,10 @@ const keys = require('../../config/keys');
 const rp = require('request-promise');
 
 router.get('/', (req, res) => {
-  // const location = req.params.location;
+  const location = req.params.location;
   const params = {
     method: 'get',
-    url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.7215,-74.0000&radius=200&rankby=prominence&type=cafe&key=${keys.googleKey}`,
+    url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.latitude},${location.longitude}&radius=200&rankby=prominence&type=cafe&key=${keys.googleKey}`,
     json: true
   };
   rp(params)
