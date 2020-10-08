@@ -9,7 +9,6 @@ const mSTP = (state, ownProps) => {
   const coffee = state.entities.coffees[coffeeId];
   const coffeeScores = state.entities.coffeeScores;
   const nearbyShops = state.entities.shops;
-
   return {
     coffee,
     coffeeId,

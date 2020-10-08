@@ -3,7 +3,8 @@ import './coffee.scss';
 import { Link } from 'react-router-dom';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
-
+import ReactModal from 'react-modal';
+import CoffeeScoreFormContainer from '../coffee_score/coffee_score_container';
 
 
 export default class Coffee extends React.Component {
@@ -15,11 +16,24 @@ export default class Coffee extends React.Component {
       avgAcidity: 0,
       avgBody: 0,
       avgFlavor: 0,
-      avgAftertaste: 0
+      avgAftertaste: 0,
+      showModal: false
     }
     
-
     this.calculateAverageScores = this.calculateAverageScores.bind(this);
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+
+  handleOpenModal() {
+    this.setState({ showModal: true });
+  }
+ 
+  handleCloseModal() {
+    this.setState({ showModal: false });
+    const coffeeId = this.props.match.params.coffeeId;
+    this.props.fetchCoffeeScores(coffeeId)
+      .then(() => this.calculateAverageScores());
   }
 
   componentDidMount() {
@@ -29,7 +43,7 @@ export default class Coffee extends React.Component {
     fetchCoffeeScores(coffeeId)
       .then(() => this.calculateAverageScores());
   }
-
+  
   componentDidUpdate(prevProps) {
     // if (prevProps.match.params !== this.props.match.params) {
     //   const { fetchCoffee, fetchCoffeeScores } = this.props;
@@ -113,7 +127,7 @@ export default class Coffee extends React.Component {
   render() {
     const { coffee, coffeeScores } = this.props;
     const { avgAroma, avgAcidity, avgBody, avgFlavor, avgAftertaste } = this.state;
-
+    const root = document.getElementById('root');
     const BorderLinearProgress = withStyles((theme) => ({
       root: {
         height: 10,
@@ -148,6 +162,19 @@ export default class Coffee extends React.Component {
             <BorderLinearProgress value={avgFlavor * 10} variant={"determinate"} /></li>
             <li className='coffee-score-item'>Aftertaste: {avgAftertaste}
             <BorderLinearProgress value={avgAftertaste * 10} variant={"determinate"} /></li>
+          <div className='score-modal-btn-container'>
+            <button onClick={this.handleOpenModal} className='coffee-score-btn'>
+              Review Coffee
+            </button>
+            <ReactModal 
+              isOpen={this.state.showModal} 
+              appElement={root} 
+              className='score-modal'
+              onRequestClose={this.handleCloseModal}
+            >
+              <CoffeeScoreFormContainer closeModal={this.handleCloseModal}/>
+            </ReactModal>
+          </div>
           </ul>
         </div>
           {this.renderNearbyShops()}
