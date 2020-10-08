@@ -149,8 +149,9 @@ export default class Coffee extends React.Component {
         <div className='coffee-show-container'>
           <div className="coffee-details">
             <h1 className='coffee-details-title'>{coffee.name}</h1>
+            <span className='coffee-details-roaster'>{coffee.roaster}</span>
             <span className='coffee-details-origin'>{coffee.origin}</span>
-            <span className='coffee-details-source'>{coffee.source}</span>
+            {/* <span className='coffee-details-source'>{coffee.source.username}</span> */}
           </div>
           <ul className='coffee-score-list'>
             <li className='coffee-score-item'>Aroma: {avgAroma}
