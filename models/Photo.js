@@ -7,10 +7,31 @@ const AutoIncrement = require("mongoose-sequence")(mongoose);
 
 let PhotoSchema = new Schema(
   {
-    photo_id: { type: Number, default: 0 },
-    description: { type: String },
-    fileLink: { type: String },
-    s3_key: { type: String }
+    user: { 
+      type: Schema.Types.ObjectId,
+      ref: 'users'
+    },
+    coffee: { 
+      type: Schema.Types.ObjectId,
+      ref: 'coffees'
+    },
+    review: { 
+      type: Schema.Types.ObjectId,
+      ref: 'reviews'
+    },
+    photo_id: { 
+      type: Number,
+      default: 0
+    },
+    description: { 
+      type: String
+    },
+    fileLink: { 
+      type: String 
+    },
+    s3_key: { 
+      type: String 
+    }
   },
   {
     // createdAt,updatedAt fields are automatically added into records

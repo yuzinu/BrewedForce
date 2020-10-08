@@ -34,6 +34,7 @@
     "react-material-ui-carousel": "^2.0.1",
     "react-modal": "^3.11.2",
     "react-responsive-carousel": "^3.2.10",
+    "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "sass-loader": "^10.0.2",
     "validator": "^13.1.17"
