@@ -1,4 +1,3 @@
-import { data } from 'jquery';
 import * as CoffeesApiUtil from '../../util/coffees/coffees_api_util';
 
 export const RECEIVE_COFFEE = 'RECEIVE_COFFEE';
