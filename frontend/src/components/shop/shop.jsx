@@ -65,7 +65,7 @@ export default class Shop extends React.Component {
     }
     
     render() {
-        debugger
+        
         if(this.state.name === '') return null;
         return (
             <div>

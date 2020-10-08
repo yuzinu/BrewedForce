@@ -63,11 +63,11 @@ export default class Coffee extends React.Component {
       }
     })
     this.setState({
-      avgAroma: totalAroma/i,
-      avgAcidity: totalAcidity/i,
-      avgBody: totalBody/i,
-      avgFlavor: totalFlavor/i,
-      avgAftertaste: totalAftertaste/i
+      avgAroma: (totalAroma/i).toFixed(1),
+      avgAcidity: (totalAcidity/i).toFixed(1),
+      avgBody: (totalBody/i).toFixed(1),
+      avgFlavor: (totalFlavor/i).toFixed(1),
+      avgAftertaste: (totalAftertaste/i).toFixed(1)
     })
   }
 
@@ -85,7 +85,7 @@ export default class Coffee extends React.Component {
   }
 
   renderNearbyShops() {
-    debugger
+    
     let shops;
     if (Object.values(this.props.nearbyShops).length === 0) {
       return;

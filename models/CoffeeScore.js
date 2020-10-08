@@ -8,7 +8,6 @@ const CoffeeScoreSchema = new Schema({
   },
   shop: {
     type: String,
-    required: true
   },
   coffee: {
     type: Schema.Types.ObjectId,
