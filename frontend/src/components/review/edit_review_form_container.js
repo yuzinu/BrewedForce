@@ -5,6 +5,7 @@ import { updateReview } from '../../actions/review/review_actions';
 
 
 const mSTP = (state, ownProps) => {
+  debugger
   return {
     review: state.entities.reviews[ownProps.match.params.reviewId]
   };

@@ -52,10 +52,10 @@ export default class EditReviewForm extends React.Component {
 
   render() {
     const { coffees } = this.props;
+    if (!coffees) return null;
     const {
       coffee, text, rating, aroma, acidity, body, flavor, aftertaste
     } = this.state;
-    if (!coffees) return null;
     return (
       <div className='review-form-container'>
         <h1 className='review-form-title'>Edit Review Form</h1>

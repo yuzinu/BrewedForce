@@ -55,7 +55,7 @@ router.post('/',
 
     const newCoffeeScore = new CoffeeScore({
       user: req.body.user.id,
-      shop: req.body.shop.id,
+      // shop: req.body.shop.id,
       coffee: req.body.coffee,
       aroma: req.body.aroma,
       acidity: req.body.acidity,
