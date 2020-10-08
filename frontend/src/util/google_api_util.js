@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const fetchNearbyShops = params => {
-  debugger
+  
   return axios.get(`/api/shops`)
 };
 

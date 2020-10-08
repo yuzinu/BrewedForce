@@ -85,7 +85,7 @@ export default class Coffee extends React.Component {
   }
 
   renderNearbyShops() {
-    debugger
+    
     let shops;
     if (Object.values(this.props.nearbyShops).length === 0) {
       return;

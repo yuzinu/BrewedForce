@@ -34,6 +34,7 @@ class App extends React.Component {
 
     return(
       <> 
+      <div className="app-container">
         <SideBarContainer />
         <Switch>
           <Route exact path="/" component={MainPage} />
@@ -51,6 +52,7 @@ class App extends React.Component {
           <Route path="/shops/:shopId" component={ShopContainer} />
           {/* <Route exact path ="/coffees/:coffeeId" component={(location) => <CoffeeContainer location={location} />} /> */}
         </Switch>
+      </div>
       </>
     )}
 };
