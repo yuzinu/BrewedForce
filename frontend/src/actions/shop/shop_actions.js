@@ -4,6 +4,7 @@ export const RECEIVE_NEARBY_SHOPS = 'RECEIVE_NEARBY_SHOPS';
 export const RECEIVE_SHOP_DETAILS = 'RECEIVE_SHOP_DETAILS';
 
 const receiveNearbyShops = shops => {
+  debugger
     return {
         type: RECEIVE_NEARBY_SHOPS,
         shops
@@ -18,6 +19,7 @@ const receiveShopDetails = details => {
 }
 
 export const fetchNearbyShops = params => {
+  debugger
   return dispatch => {
     return GoogleApiUtil.fetchNearbyShops(params)
       .then(({data}) => {
