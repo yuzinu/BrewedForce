@@ -1,10 +1,12 @@
 import * as GoogleApiUtil from '../../util/google_api_util';
+import * as ShopApiUtil from '../../'
 
 export const RECEIVE_NEARBY_SHOPS = 'RECEIVE_NEARBY_SHOPS';
 export const RECEIVE_SHOP_DETAILS = 'RECEIVE_SHOP_DETAILS';
 
+
+
 const receiveNearbyShops = shops => {
-  
     return {
         type: RECEIVE_NEARBY_SHOPS,
         shops
