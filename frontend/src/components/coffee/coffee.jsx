@@ -172,6 +172,7 @@ export default class Coffee extends React.Component {
               isOpen={this.state.showModal} 
               appElement={root} 
               className='score-modal'
+              overlayClassName='score-modal-background'
               onRequestClose={this.handleCloseModal}
             >
               <CoffeeScoreFormContainer closeModal={this.handleCloseModal}/>
