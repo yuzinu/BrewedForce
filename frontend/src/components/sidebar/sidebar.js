@@ -22,15 +22,17 @@ class SideBar extends React.Component {
                 <Link className="sidebar-buttons-link" to={'/coffees'}>Coffees</Link>
                 <Link className="sidebar-buttons-link" to={'/shops'}>Shops</Link>
                 <Link className="sidebar-buttons-link" to={'/roasters'}>Roasters</Link>
-                {/* <Link className="sidebar-buttons-link" to={'/profile'}>Profile</Link> */}
                 <button className="sidebar-buttons-link" onClick={this.logoutUser}>Logout</button>
             </div>
         );
       } else {
         return (
             <div className="sidebar-buttons">
-              <Link className="sidebar-buttons-link" to={'/signup'}>Signup</Link>
+              <Link className="sidebar-buttons-link" to={'/coffees'}>Coffees</Link>
+              <Link className="sidebar-buttons-link" to={'/shops'}>Shops</Link>
+              <Link className="sidebar-buttons-link" to={'/roasters'}>Roasters</Link>
               <Link className="sidebar-buttons-link" to={'/login'}>Login</Link>
+              <Link className="sidebar-buttons-link" to={'/signup'}>Signup</Link>
             </div>
         );
       }
