@@ -28,7 +28,7 @@
                 transform: scale(1.1)
             }
         
-            & div {
+            & > li > div {
                 padding: 20px 20px;
             }
         }
@@ -65,10 +65,28 @@
 
     &-name {
         font-size: 24px;
+        height: 50%;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & div {
+            padding: 0;
+        }
     }
 
     &-origin {
         font-size: 18px;
+        height: 50%;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & div {
+            padding: 0;
+        }
     }
 }
 
@@ -95,6 +113,7 @@
 .Carousel-button-7 {
     background-color: #ffffff;
 }
+
 button[class^='Carousel-button-'] {
     background-color: #ffffff;
 }

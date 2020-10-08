@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
+import { Textfit } from 'react-textfit';
 import Carousel from 'react-material-ui-carousel';
 require('./coffee_index.scss');
 
@@ -16,7 +18,6 @@ export default class CoffeeIndex extends React.Component {
     }
 
     displayCoffees() {
-        let slideIndex = 1;
         let coffeeArray = [];
         this.state.coffees.map( (coffee, i) => {
             if (i % 6 === 0) coffeeArray.push([]);
@@ -31,8 +32,8 @@ export default class CoffeeIndex extends React.Component {
                             if (i < 3) {
                                 return <Link to={`/coffees/${coffee._id}`}>
                                     <li className="coffee-index-item" key={coffee._id}>
-                                        <div className="coffee-index-item-name">{coffee.name}</div>
-                                        <div className="coffee-index-item-origin">{coffee.origin}</div>
+                                        <Textfit min={16} mode="multi" className="coffee-index-item-name">{coffee.name}</Textfit>
+                                        <Textfit min={16} max={18} mode="multi" className="coffee-index-item-origin">{coffee.origin}</Textfit>
                                     </li>
                                 </Link>
                             }
@@ -44,8 +45,8 @@ export default class CoffeeIndex extends React.Component {
                             if (i >= 3) {
                                 return <Link to={`/coffees/${coffee._id}`}>
                                     <li className="coffee-index-item" key={coffee._id}>
-                                        <div className="coffee-index-item-name">{coffee.name}</div>
-                                        <div className="coffee-index-item-origin">{coffee.origin}</div>
+                                        <Textfit min={16} mode="multi" className="coffee-index-item-name">{coffee.name}</Textfit>
+                                        <Textfit min={16} max={18} mode="multi" className="coffee-index-item-origin">{coffee.origin}</Textfit>
                                     </li>
                                 </Link>
                             }
@@ -58,10 +59,29 @@ export default class CoffeeIndex extends React.Component {
     }
 
     render() {
+        const CoffeeCarousel = withStyles((theme) => ({
+            button: {
+                backgroundColor: "#ffffff",
+                color: "black",
+                '&:hover': {
+                    opacity: 0.6
+                }
+            },
+            buttonWrapper: {
+                '&:hover': {
+                    '& $button': {
+                        backgroundColor: "#ffffff",
+                        filter: "brightness(120%)",
+                        opacity: 0.4
+                    }
+                }
+            },
+        }))(Carousel)
+
         return this.state.coffees ? (
-            <Carousel className={"coffee-index-carousel"} animation={"slide"} navButtonsAlwaysVisible={true} timeout={600} autoPlay={false}>
+            <CoffeeCarousel className={"coffee-index-carousel"}  navButtonsAlwaysVisible={true} timeout={400} autoPlay={false}>
                 {this.displayCoffees()}
-            </Carousel>
+            </CoffeeCarousel>
         ) : (
             <div></div>
         )
