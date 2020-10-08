@@ -7,27 +7,14 @@ const ReviewSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
     },
-
     shop: {
-        type: String,
+        type: Schema.Types.ObjectId,
         ref: 'shops'
     },
-
-    coffee: {
-        type: Schema.Types.ObjectId,
-        ref: 'coffees'
-    },
-
-    coffee_score: {
-        type: Schema.Types.ObjectId,
-        ref: 'coffee_scores'
-    },
-  
     rating: {
         type: Number,
         required: true
     },
-
     text: {
         type: String,
         required: true

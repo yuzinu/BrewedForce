@@ -3,7 +3,8 @@ import './coffee.scss';
 import { Link } from 'react-router-dom';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
-
+import ReactModal from 'react-modal';
+import CoffeeScoreFormContainer from '../coffee_score/coffee_score_container';
 
 
 export default class Coffee extends React.Component {
@@ -15,11 +16,24 @@ export default class Coffee extends React.Component {
       avgAcidity: 0,
       avgBody: 0,
       avgFlavor: 0,
-      avgAftertaste: 0
+      avgAftertaste: 0,
+      showModal: false
     }
     
-
     this.calculateAverageScores = this.calculateAverageScores.bind(this);
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+
+  handleOpenModal() {
+    this.setState({ showModal: true });
+  }
+ 
+  handleCloseModal() {
+    this.setState({ showModal: false });
+    const coffeeId = this.props.match.params.coffeeId;
+    this.props.fetchCoffeeScores(coffeeId)
+      .then(() => this.calculateAverageScores());
   }
 
   componentDidMount() {
@@ -29,7 +43,7 @@ export default class Coffee extends React.Component {
     fetchCoffeeScores(coffeeId)
       .then(() => this.calculateAverageScores());
   }
-
+  
   componentDidUpdate(prevProps) {
     // if (prevProps.match.params !== this.props.match.params) {
     //   const { fetchCoffee, fetchCoffeeScores } = this.props;
@@ -61,14 +75,14 @@ export default class Coffee extends React.Component {
         totalFlavor += score.flavor;
         totalAftertaste += score.aftertaste;
       }
-    })
+    });
     this.setState({
       avgAroma: (totalAroma/i).toFixed(1),
       avgAcidity: (totalAcidity/i).toFixed(1),
       avgBody: (totalBody/i).toFixed(1),
       avgFlavor: (totalFlavor/i).toFixed(1),
       avgAftertaste: (totalAftertaste/i).toFixed(1)
-    })
+    });
   }
 
   fetchNearbyShops() {
@@ -114,7 +128,8 @@ export default class Coffee extends React.Component {
     const { coffee, coffeeScores } = this.props;
     const { avgAroma, avgAcidity, avgBody, avgFlavor, avgAftertaste } = this.state;
 
-    const BorderLinearProgress = withStyles((theme) => ({
+    const root = document.getElementById('root');
+    const ScoreBar = withStyles((theme) => ({
       root: {
         height: 10,
         // borderRadius: 5,
@@ -139,15 +154,29 @@ export default class Coffee extends React.Component {
           </div>
           <ul className='coffee-score-list'>
             <li className='coffee-score-item'>Aroma: {avgAroma}
-            <BorderLinearProgress value={avgAroma*10} variant={"determinate"} /></li>
+            <ScoreBar value={avgAroma*10} variant={"determinate"} /></li>
             <li className='coffee-score-item'>Acidity: {avgAcidity}
-            <BorderLinearProgress value={avgAcidity * 10} variant={"determinate"} /></li>
+            <ScoreBar value={avgAcidity * 10} variant={"determinate"} /></li>
             <li className='coffee-score-item'>Body: {avgBody}
-            <BorderLinearProgress value={avgBody * 10} variant={"determinate"} /></li>
+            <ScoreBar value={avgBody * 10} variant={"determinate"} /></li>
             <li className='coffee-score-item'>Flavor: {avgFlavor}
-            <BorderLinearProgress value={avgFlavor * 10} variant={"determinate"} /></li>
+            <ScoreBar value={avgFlavor * 10} variant={"determinate"} /></li>
             <li className='coffee-score-item'>Aftertaste: {avgAftertaste}
-            <BorderLinearProgress value={avgAftertaste * 10} variant={"determinate"} /></li>
+
+            <ScoreBar value={avgAftertaste * 10} variant={"determinate"} /></li>
+          <div className='score-modal-btn-container'>
+            <button onClick={this.handleOpenModal} className='coffee-score-btn'>
+              Review Coffee
+            </button>
+            <ReactModal 
+              isOpen={this.state.showModal} 
+              appElement={root} 
+              className='score-modal'
+              onRequestClose={this.handleCloseModal}
+            >
+              <CoffeeScoreFormContainer closeModal={this.handleCloseModal}/>
+            </ReactModal>
+          </div>
           </ul>
         </div>
           {this.renderNearbyShops()}

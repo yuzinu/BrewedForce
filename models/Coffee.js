@@ -2,24 +2,24 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const CoffeeSchema = new Schema({
-    name: {
-        type: String,
-        required: true
+    source: {
+      type: Schema.Types.ObjectId,
+      refs: 'users',
+      required: true
     },
     roaster: {
-        type: Schema.Types.ObjectID,
-        refs: 'roasters',
-        required: true
+      type: Schema.Types.ObjectId,
+      refs: 'roasters',
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
     },
     origin: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     },
-    source: {
-        type: String,
-        required: true
-    },
-
 }, {
     timestamps: true
 });
