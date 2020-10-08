@@ -1,13 +1,14 @@
 .coffee-index-container {
     height: 100%;
     width: 100%;
-    background-image: url('https://i.imgur.com/3B5OMG6.jpg');
-    background-size: cover;
-    background-position: center;
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    // position: relative;
 
     & ul {
-        position:absolute;
+        // position:absolute;
+        padding-left: 8%;
+        padding-right: 8%;
         height: 100%;
         width: 33%;
         display:flex;
@@ -21,6 +22,11 @@
             text-align: center;
             background: url('https://i.imgur.com/n3NAtVu.jpg');
             background-size: cover;
+            transition: 0.4s;
+
+            &:hover {
+                transform: scale(1.1)
+            }
         
             & div {
                 padding: 20px 20px;
@@ -51,15 +57,18 @@
     color: #ffffff;
     font-weight: 700;
     background-color: rgba(0, 0, 0, .4);
-    
+    transition: .4s;
+
+    &:hover {
+        background-color: rgba(0,0,0,.75);
+    }
+
     &-name {
         font-size: 24px;
-        opacity: 1;
     }
 
     &-origin {
         font-size: 18px;
-        opacity: 1;
     }
 }
 
@@ -72,12 +81,26 @@
     
     &-name {
         font-size: 24px;
-        opacity: 1;
     }
 
     &-origin {
         font-size: 18px;
-        opacity: 1;
     }
 }
 
+.coffee-index-carousel, .coffee-index-carousel > *, .CarouselItem > * {
+    height: 100%;
+}
+
+.Carousel-button-7 {
+    background-color: #ffffff;
+}
+button[class^='Carousel-button-'] {
+    background-color: #ffffff;
+}
+
+.coffee-index-carousel {
+    background-image: url('https://i.imgur.com/3B5OMG6.jpg');
+    background-size: cover;
+    background-position: center;
+}

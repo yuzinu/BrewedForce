@@ -5,12 +5,10 @@ import { fetchCoffeeScores } from '../../actions/coffee_score/coffee_score_actio
 import { fetchNearbyShops } from '../../actions/shop/shop_actions';
 
 const mSTP = (state, ownProps) => {
-  
   const coffeeId = ownProps.match.params.coffeeId;
   const coffee = state.entities.coffees[coffeeId];
   const coffeeScores = state.entities.coffeeScores;
   const nearbyShops = state.entities.shops;
-
   return {
     coffee,
     coffeeId,
