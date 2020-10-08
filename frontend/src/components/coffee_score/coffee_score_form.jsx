@@ -147,7 +147,7 @@ export default class CoffeeScoreForm extends React.Component {
             </Select>
           </FormControl>
 
-          <button className='score-submit-btn'>SUBMIT SCORE</button>
+          <button className='score-submit-btn'>Submit Score</button>
         </form>
 
       </div>

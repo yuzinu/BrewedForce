@@ -1,0 +1,41 @@
+.app-container {
+    background-color: white;
+}
+
+.shop-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    height: 600px;
+    align-items: center;
+}
+
+.shop-description {
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+}
+
+.shop-title {
+    font-size: 50px;
+    font-family: 'Hind Guntur', sans-serif;
+}
+
+.ratings-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.num-reviews {
+    font-size: 20px;
+    font-family: 'Hind Guntur', sans-serif;
+    padding-left: 20px;
+}
+
+.review {
+    display: flex;
+    flex-direction: column;
+}
