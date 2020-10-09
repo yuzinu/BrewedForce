@@ -185,6 +185,7 @@ export default class Coffee extends React.Component {
             </ReactModal>
           </div>) : (<></>)}
           </ul>
+          <Link to="/coffees" className="coffee-index-link">Back To Index</Link>
         </div>
           {/* {this.renderNearbyShops()} */}
         

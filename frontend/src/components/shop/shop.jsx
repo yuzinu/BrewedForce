@@ -88,7 +88,7 @@ export default class Shop extends React.Component {
 
     renderReviewDate(date) {
         date = date.split('T')[0].split('-').reverse()
-        debugger
+        
         [ date[0], date[1] ] = [ date[1], date[0] ];
         return date.join('/')
     }
