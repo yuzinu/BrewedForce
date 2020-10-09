@@ -7,7 +7,6 @@ import { fetchShopDetails,
 
 
 const mapStateToProps = state => {
-    debugger;
     return {
         shopReviews: state.entities.reviews.shopReviews,
         shopDetails: state.entities.shops.shopDetails,

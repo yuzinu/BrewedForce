@@ -2,6 +2,7 @@ import React from 'react';
 import './shop.scss';
 import { Link } from 'react-router-dom';
 
+
 import ReviewFormContainer from '../review/review_form_container';
 import ShopRatings from './ratings';
 
@@ -14,19 +15,19 @@ export default class Shop extends React.Component {
             id: '',
             location: '',
             price_level: null,
-            coffees: []
+            coffees: [],
+            website: '',
+            phone_number: ''
         };
         this.calculateRatings = this.calculateRatings.bind(this);
     }
 
     componentDidMount() {
-      debugger
         this.props.fetchShopCoffees(this.props.match.params.shopId)
           .then(this.props.fetchShopDetails(this.props.match.params.shopId));
     }
 
     componentDidUpdate(prevProps) {
-        debugger
         if (this.props.shopDetails !== undefined
             && (prevProps.shopDetails === undefined 
                 || (prevProps.shopDetails !== undefined && this.props.shopDetails.name !== prevProps.shopDetails.name))) {
@@ -36,7 +37,9 @@ export default class Shop extends React.Component {
                 location: this.props.shopDetails.formatted_address,
                 price_level: this.props.shopDetails.price_level,
                 ratings: this.calculateRatings(),
-                coffees: this.props.shopCoffees || []
+                coffees: this.props.shopCoffees || [],
+                website: this.props.shopDetails.website,
+                phone_number: this.props.shopDetails.formatted_phone_number
             }, () => this.props.fetchShopReviews(this.state.id))
         }
     }
@@ -58,28 +61,35 @@ export default class Shop extends React.Component {
     }
 
     renderReviews() {
-        debugger
         let reviews;
         if(!this.props.shopReviews || this.props.shopReviews.length === 0) {
             return 'Be the first to write a review';
         } else {
             reviews = this.props.shopReviews;
         }
-        debugger
+        
+        debugger;
         return reviews
             .map((review, i) => {
                 return (
                     <div className='review'>
                         <div className='review-rating'><ShopRatings size={'25px'} ratings={review.rating} /></div>
-                        <div className='review-user'>{review.user.username}</div>
+                        <div className='review-sub-row'>
+                            <div className='review-user'>{review.user.username}</div>
+                            <div className='review-date'>{this.renderReviewDate(review.user.updatedAt)}</div>
+                        </div>
                         <div className='review-text'>{review.text}</div>
+                        
                     </div>
                 )
             })
     }
 
+    renderReviewDate(date) {
+        return date.split('T')[0].split('-').reverse().join('/')
+    }
+
     renderCoffees() {
-        debugger
         let coffees;
         if(this.state.coffees.length === 0) {
             return [];
@@ -96,6 +106,11 @@ export default class Shop extends React.Component {
             })
     }
 
+    renderWebsite() {
+        if (this.state.website) {
+        return this.state.website.split('/')[2]}
+    }
+
     numReviews() {
         if (!this.props.shopReviews || this.props.shopReviews.length === 0) {
             return "No";
@@ -106,12 +121,10 @@ export default class Shop extends React.Component {
     
     
     render() {
-        debugger
         if(this.state.name === '') return null;
         return (
             <div className='main-container'>
                 <div className='shop-container'>
-                    
                         <div className='shop-description'>
                             <h1 className='shop-title'>{this.state.name}</h1>
                                 <div className='ratings-container'>
@@ -122,13 +135,19 @@ export default class Shop extends React.Component {
                                     <div>{this.state.location}</div>
                                 </div>
                         </div>
+                        <div className='shop-description-2'>
+                            <div className='shop-website'>
+                                <a href={this.state.website} className='link'>{this.renderWebsite()}</a>
+                            </div>
+                        <div className='shop-number'>{this.state.phone_number}</div>
+                        </div>
+
                 </div>
                 <div className='bottom-container'>
-                    <div className='bottom-filler'/>
                     <div className='bottom-container-sub'>
                         <div className='bottom-container-sub-coffees'>
                             <div className='coffees'>
-                                <div className='coffees-title'>Coffees Served</div>
+                                <div className='coffees-title'>Our Coffees</div>
                                 <div className='coffees-container'>
                                     {this.renderCoffees()}
                                 </div>
