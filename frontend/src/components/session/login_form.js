@@ -38,10 +38,33 @@ class LoginForm extends React.Component {
   demoLogin(e) {
     e.preventDefault();
 
-    let demoUser = {
-      identifier: "silver_snoopy",
-      password: "speedmaster"
+    function random(array) {
+      return items[Math.floor(Math.random()*items.length)];
     }
+
+    let identifier = random(["silver_snoopy", "silver_snoopy@omega.com"]);
+
+    const demo_identifier = {
+      strings: [identifier],
+      typeSpeed: 56, 
+    };
+    const demo_password = {
+      strings: ["speedmaster"],
+      typeSpeed: 56, 
+    };
+
+    new Typed(".demo-identifier", demo_identifier);
+
+    setTimeout(() => {
+      new Typed(".demo-password", demo_password);
+    }, 1600);
+
+    setTimeout(() => {
+      this.props.login({
+        identifier: demo_identifier,
+        password: demo_password
+      });
+    }, 2400);
 
     this.props.login(demoUser);
   }
@@ -67,12 +90,14 @@ class LoginForm extends React.Component {
             value={this.state.identifier}
             onChange={this.update('identifier')}
             placeholder="Email or username"
+            className="demo-identifier"
           />
 
           <input type="password"
             value={this.state.password}
             onChange={this.update('password')}
             placeholder="Password"
+            className="demo-password"
           />
           
           <div className="login-form-button-wrapper">
