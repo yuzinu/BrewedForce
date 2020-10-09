@@ -11,7 +11,7 @@ class MainPage extends React.Component {
     const linkedin = <FontAwesomeIcon icon={faLinkedin} />;
     return (
       <div className="main-page">
-        <footer className="coffee-footer">
+        <div className="coffee-footer">
           <div className='personal-info'>
             <div className='links'>
               <a href="https://github.com/troubadour10">
@@ -59,7 +59,7 @@ class MainPage extends React.Component {
             </div>
             <span>Drew Webster</span>
           </div>
-        </footer>
+        </div>
       </div>
     );
   }
