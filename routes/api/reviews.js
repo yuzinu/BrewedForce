@@ -35,7 +35,6 @@ router.get('/shop/:shop_id', (req, res) => {
           });
           return Promise.all(users_data)
             .then(user_details => {
-              let review = {};
               for (let i = 0; i < reviews_data.length; i++) {
                 reviews_data[i]._doc.user = user_details[i];
               }
