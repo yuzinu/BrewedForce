@@ -231,7 +231,7 @@
     display: flex;
     flex-direction: column;
     margin-right: 150px;
-    align-items: flex-end;
+    align-items: flex-start;
 }
 
 .shop-website {
@@ -240,4 +240,12 @@
 
 .shop-number {
     padding: 10px;
+}
+
+.phone-icon {
+    padding-right: 10px;
+}
+
+.browser-icon {
+    padding-right: 10px;
 }
