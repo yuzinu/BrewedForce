@@ -4,7 +4,7 @@ import { RECEIVE_NEARBY_SHOPS,
         CHECK_SHOP_PRESENCE } from '../../actions/shop/shop_actions';
 
 const shopsReducer = (state = {}, action) => {
-    debugger
+    
     Object.freeze(state);
     let nextState = Object.assign({}, state);
     switch(action.type) {

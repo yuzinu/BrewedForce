@@ -6,7 +6,7 @@ import { createReview } from '../../actions/review/review_actions';
 
 const mSTP = (state, ownProps) => {
   const user = state.session.user;
-  debugger
+  
   // const shop = ownProps.match.params.shopId;
   // GET SHOP INFO
   return {
