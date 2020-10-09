@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 
+const User = require('../../models/User')
 const Review = require('../../models/Review');
 const validateReviewInput = require('../../validation/reviews');
 
@@ -24,11 +25,27 @@ router.get('/user/:user_id', (req, res) => {
 
 router.get('/shop/:shop_id', (req, res) => {
     Review.find({ shop: req.params.shop_id })
-        .then(reviews => res.json(reviews))
-        .catch(err =>
-            res.status(404).json({ noReviewsfound: 'No reviews found from that user' }
-            )
-        );
+        .then(reviews => {
+          let users_data = [];
+          let reviews_data = [];
+
+          reviews.forEach((review) => {
+            users_data.push(User.findById(review.user));
+            reviews_data.push(review);
+          });
+          return Promise.all(users_data)
+            .then(user_details => {
+              let review = {};
+              for (let i = 0; i < reviews_data.length; i++) {
+                reviews_data[i]._doc.user = user_details[i];
+              }
+              return reviews_data;
+            });
+        })
+        .then(reviews => {
+          res.status(200).json(reviews);
+        })
+        .catch(err => res.status(404).json({ noReviewsfound: 'No reviews found from that user' }));
 });
 
 
