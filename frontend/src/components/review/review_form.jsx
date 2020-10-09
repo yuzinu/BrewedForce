@@ -1,5 +1,7 @@
 import React from 'react';
 import './review_form.scss';
+import '../coffee/coffee.scss';
+import '../coffee_score/coffee_score_form.scss';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -10,14 +12,14 @@ export default class ReviewForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      coffee: '',
+      // coffee: '',
       text: '',
       rating: '',
-      aroma: '',
-      acidity: '',
-      body: '',
-      flavor: '',
-      aftertaste: '',
+      // aroma: '',
+      // acidity: '',
+      // body: '',
+      // flavor: '',
+      // aftertaste: '',
       awsLinks: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,47 +38,52 @@ export default class ReviewForm extends React.Component {
   }
 
   handlePhotoInput(e) {
-    // convert photo(s) into aws links
-    // push links as strings into this.state.awsLinks
+    // e.preventDefault
+    // const { user, review } = this.props;
+
+    
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const { 
-      user, createCoffeeScore, 
-      createReview } = this.props;
+      user, shop, createReview, closeModal } = this.props;
     const { 
-      coffee, aroma, acidity, body, flavor, aftertaste, 
+    //   coffee, aroma, acidity, body, flavor, aftertaste, 
       rating, text
     } = this.state;
-    createCoffeeScore({
-      user,
-      // shop, // REPLACE WITH SHOP ID
-      coffee,
-      aroma,
-      acidity,
-      body,
-      flavor,
-      aftertaste
-    })
+    // createCoffeeScore({
+    //   user,
+    //   // shop, // REPLACE WITH SHOP ID
+    //   coffee,
+    //   aroma,
+    //   acidity,
+    //   body,
+    //   flavor,
+    //   aftertaste
+    // })
     createReview({
+      user,
+      shop,
       rating,
       text
-    })
+    }).then(() => closeModal());
   }
 
   render() {
-    const { coffees } = this.props;
+    // const { coffees } = this.props;
+    // const { shop } = this.props;
     const { 
-      coffee, text, rating, aroma, acidity, body, flavor, aftertaste 
+      text, rating, 
+      // coffee, aroma, acidity, body, flavor, aftertaste 
     } = this.state;
-    if (!coffees) return null;
+    // if (!coffees) return null;
     return (
       <div className='review-form-container'>
-        <h1 className='review-form-title'></h1>
+        {/* <h1 className='review-form-title'></h1> */}
         <form onSubmit={this.handleSubmit} className='review-form'>
           
-          <FormControl>
+          {/* <FormControl>
             <InputLabel id='coffee'>Coffee</InputLabel>
             <Select
               className='review-input'
@@ -88,9 +95,9 @@ export default class ReviewForm extends React.Component {
                 return <MenuItem value={coffee._id}>{coffee.name}</MenuItem>
               })}
             </Select>
-          </FormControl>
+          </FormControl> */}
           
-          <FormControl>
+          {/* <FormControl>
             <InputLabel id="aroma-input-label">Aroma</InputLabel>
             <Select
               className='review-input'
@@ -193,7 +200,7 @@ export default class ReviewForm extends React.Component {
               <MenuItem value={2}>2</MenuItem>
               <MenuItem value={1}>1</MenuItem>
             </Select>
-          </FormControl>
+          </FormControl> */}
 
           <FormControl>
             <InputLabel id="rating-input-label">Shop Rating</InputLabel>
@@ -223,10 +230,11 @@ export default class ReviewForm extends React.Component {
           />
           
           {/* PHOTO UPLOAD PLACEHOLDER */}
-          <label htmlFor="photo">Upload Photo</label>
-          <input type="file" multiple onChange={this.handlePhotoInput}/>
-
-          <button className='review-submit-btn'>SUBMIT REVIEW</button>
+          <div className="upload-photo">
+            <label htmlFor="photo">Upload Photo</label>
+            <input type="file" multiple onChange={this.handlePhotoInput}/>
+          </div>
+          <button className='review-submit-btn'>Submit Review</button>
         </form>
 
 
