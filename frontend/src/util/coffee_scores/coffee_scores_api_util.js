@@ -11,3 +11,7 @@ export const createCoffeeScore = coffeeScore => {
 export const updateCoffeeScore = coffeeScore => {
   return axios.patch(`/api/coffee_scores/${coffeeScore.id}`, coffeeScore)
 }
+
+export const fetchUserCoffeeScores = userId => {
+  return axios.get(`/api/coffee_scores/user/${userId}`)
+}

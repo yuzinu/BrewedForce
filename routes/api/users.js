@@ -6,12 +6,14 @@ const jwt = require("jsonwebtoken");
 const passport = require("passport");
 
 const User = require("../../models/User");
+const CoffeeScore = require("../../models/CoffeeScore");
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
 router.get("/test", (req, res) => {
   res.json({ msg: "This is the user route" });
 });
+
 
 router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
   res.json({
