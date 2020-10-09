@@ -1,6 +1,9 @@
 import React from 'react';
 import './shop.scss';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone} from '@fortawesome/free-solid-svg-icons';
+import { faWindowMaximize } from '@fortawesome/free-solid-svg-icons';
 
 
 import ReviewFormContainer from '../review/review_form_container';
@@ -122,6 +125,8 @@ export default class Shop extends React.Component {
     
     
     render() {
+        const phone = <FontAwesomeIcon className='phone-icon' icon={faPhone}/>
+        const browser = <FontAwesomeIcon className='browser-icon' icon={faWindowMaximize} />
         if(this.state.name === '') return null;
         return (
             <div className='main-container'>
@@ -138,9 +143,9 @@ export default class Shop extends React.Component {
                         </div>
                         <div className='shop-description-2'>
                             <div className='shop-website'>
-                                <a href={this.state.website} className='link'>{this.renderWebsite()}</a>
+                                {browser}<a href={this.state.website} className='link'>{this.renderWebsite()}</a>
                             </div>
-                        <div className='shop-number'>{this.state.phone_number}</div>
+                        <div className='shop-number'>{phone}{this.state.phone_number}</div>
                         </div>
 
                 </div>
