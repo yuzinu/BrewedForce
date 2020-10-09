@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import Typed from 'typed.js';
 require('./session.scss');
 
 class LoginForm extends React.Component {
@@ -12,9 +13,14 @@ class LoginForm extends React.Component {
       errors: {}
     };
 
+    this.clearedErrors = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({errors: nextProps.errors})
   }
 
 
@@ -39,34 +45,42 @@ class LoginForm extends React.Component {
     e.preventDefault();
 
     function random(array) {
-      return items[Math.floor(Math.random()*items.length)];
+      return array[Math.round(Math.random())];
     }
 
     let identifier = random(["silver_snoopy", "silver_snoopy@omega.com"]);
+    let password = "speedmaster";
 
     const demo_identifier = {
       strings: [identifier],
-      typeSpeed: 56, 
+      typeSpeed: 48, 
     };
+
     const demo_password = {
-      strings: ["speedmaster"],
+      strings: [password],
       typeSpeed: 56, 
     };
 
-    new Typed(".demo-identifier", demo_identifier);
+    this.setState({
+      identifier: '',
+      password: ''
+    });
+
+    setTimeout(() => {
+      new Typed(".demo-identifier", demo_identifier);
+    }, 24);
+
 
     setTimeout(() => {
       new Typed(".demo-password", demo_password);
-    }, 1600);
+    }, 1760);
 
     setTimeout(() => {
       this.props.login({
-        identifier: demo_identifier,
-        password: demo_password
+        identifier: identifier,
+        password: password
       });
-    }, 2400);
-
-    this.props.login(demoUser);
+    }, 2800);
   }
 
   renderErrors() {
@@ -102,13 +116,13 @@ class LoginForm extends React.Component {
           
           <div className="login-form-button-wrapper">
             <button className="login-form-submit-button">Login</button>
-            {this.renderErrors()}
             <button 
               className='login-form-submit-button'
               onClick={this.demoLogin}
               >Take a Tour
             </button>
           </div>
+          {this.renderErrors()}
       </form>
     </div>
     );
