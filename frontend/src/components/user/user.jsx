@@ -25,8 +25,8 @@ export default class User extends React.Component {
     if (!user || !user.coffeeScores) return null;
     return (
       <div className="profile-container">
+        <Gravatar className="profile-details-picture" email={user.email} size={200}/>
         <div className="profile-details">
-          <Gravatar className="profile-details-picture" email={user.email} size={200}/>
           <h1 className="profile-details-username">{user.username}</h1>
           <h1 className="profile-details-review-count">{`Coffees Reviewed: ${coffeeScores.length}`}</h1>
         </div>
