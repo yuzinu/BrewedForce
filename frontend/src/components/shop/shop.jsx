@@ -20,11 +20,9 @@ export default class Shop extends React.Component {
     }
 
     componentDidMount() {
-
-        this.props.fetchShopCoffees(this.props.match.params.shopId).then(
-        this.props.fetchShopDetails(this.props.match.params.shopId))
-
-
+      debugger
+        this.props.fetchShopCoffees(this.props.match.params.shopId)
+          .then(this.props.fetchShopDetails(this.props.match.params.shopId));
     }
 
     componentDidUpdate(prevProps) {
@@ -100,7 +98,7 @@ export default class Shop extends React.Component {
 
     numReviews() {
         if (!this.props.shopReviews || this.props.shopReviews.length === 0) {
-            return;
+            return "No";
         } else {
             return this.props.shopReviews.length;
         }
@@ -141,7 +139,7 @@ export default class Shop extends React.Component {
                         <div className='bottom-container-sub-reviews'>
                             <div className='review-title'>Reviews</div>
                             <Link className='link-write-review' to='/reviews/review_form'>
-                                <div classname='write-a-review'>Write a Review</div>
+                                <div className='write-a-review'>Write a Review</div>
                             </Link>
                             <div className={this.renderReviews() === 'Be the first to write a review' ? 'no-reviews': 'all-reviews' }>
                                 {this.renderReviews()}

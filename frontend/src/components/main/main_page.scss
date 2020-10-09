@@ -10,34 +10,37 @@
 }
 
 
-.coffee-header, .coffee-footer {
-    align-self: center;
-    width: 100%;
-    text-align: center;
-    padding: 30px 0px;
-    color: darkgray;
-    // opacity: 90%;
-}
+// .coffee-header .coffee-footer{
+//     align-self: center;
+//     width: 100%;
+//     text-align: center;
+//     padding: 30px 0px;
+//     color: darkgray;
+//     // opacity: 90%;
+// }
 
-.coffee-header {
-    background-color: rgba(0,0,0,.4);
-    margin: 0px;
-    padding: 0px;
-    height: 150px;
-    font-size: 60px;
-    text-align: center;
-    line-height: 150px;
-}
+// .coffee-header {
+//     background-color: rgba(0,0,0,.4);
+//     margin: 0px;
+//     padding: 0px;
+//     height: 150px;
+//     font-size: 60px;
+//     text-align: center;
+//     line-height: 150px;
+// }
 
 .coffee-footer {
-    background-color: rgba(0,0,0,.4);
-    color: black;
-    opacity: 80%;
+    background-color: rgb(0,0,0);
+    color: rgba(150, 150, 150, .7);
+    opacity: 75%;
     align-self: flex-end;
     position: absolute;
     bottom: 0px;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
+    height: 10%;
+    width: 100%
 }
 
 .copyright {
@@ -55,5 +58,9 @@
 }
 
 .links a {
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(150, 150, 150, .7);
+}
+
+.personal-info {
+  color: rgba(150, 150, 150, .7);
 }
