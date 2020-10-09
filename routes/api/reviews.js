@@ -67,10 +67,10 @@ router.post('/',
         }
 
         const newReview = new Review({
-            // user: req.body.user.id,
+            user: req.body.user.id,
             // coffee: req.body.coffee.id,
             // coffee_score: req.body.coffee_score.id,
-            shop: req.body.shop.id,
+            shop: req.body.shop,
             rating: req.body.rating,
             text: req.body.text
         });
