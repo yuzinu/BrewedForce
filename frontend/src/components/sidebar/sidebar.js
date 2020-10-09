@@ -15,10 +15,11 @@ class SideBar extends React.Component {
   }
 
   getLinks() {
-      if (this.props.loggedIn) {
+    const { user, loggedIn } = this.props;
+      if (loggedIn) {
         return (
             <div className="sidebar-buttons">
-                <Link className="sidebar-buttons-link" to={'/profile'}>Profile</Link>
+                <Link className="sidebar-buttons-link" to={`/users/${user.id}`}>Profile</Link>
                 <Link className="sidebar-buttons-link" to={'/coffees'}>Coffees</Link>
                 <Link className="sidebar-buttons-link" to={'/shops'}>Shops</Link>
                 <Link className="sidebar-buttons-link" to={'/roasters'}>Roasters</Link>
@@ -39,14 +40,25 @@ class SideBar extends React.Component {
   }
 
   render() {
-      return (
-        <div className="sidebar-wrapper">
-          <div className="sidebar">
-              <Link to="/" className="sidebar-header">BF</Link>
-              { this.getLinks() }
+      if (this.props.location.pathname === "/") {
+        return (
+          <div className="sidebar-main-wrapper">
+            <div className="sidebar-main">
+                <Link to="/" className="sidebar-header">BF</Link>
+                { this.getLinks() }
+            </div>
           </div>
-        </div>
-      );
+        );
+      } else {
+        return (
+          <div className="sidebar-wrapper">
+            <div className="sidebar">
+                <Link to="/" className="sidebar-header">BF</Link>
+                { this.getLinks() }
+            </div>
+          </div>
+        );
+      }
   }
 }
 

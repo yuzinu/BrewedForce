@@ -8,8 +8,8 @@ const CoffeeSchema = new Schema({
       required: true
     },
     roaster: {
-      type: Schema.Types.ObjectId,
-      refs: 'roasters',
+      type: String,
+      // refs: 'roasters',
       required: true
     },
     name: {

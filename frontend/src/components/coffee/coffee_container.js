@@ -13,7 +13,8 @@ const mSTP = (state, ownProps) => {
     coffee,
     coffeeId,
     coffeeScores: Object.values(coffeeScores),
-    nearbyShops
+    nearbyShops,
+    loggedIn: state.session.isAuthenticated
   };
 };
 

@@ -14,6 +14,7 @@ class LoginForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
 
@@ -34,6 +35,17 @@ class LoginForm extends React.Component {
     this.props.login(user); 
   }
 
+  demoLogin(e) {
+    e.preventDefault();
+
+    let demoUser = {
+      identifier: "silver_snoopy",
+      password: "speedmaster"
+    }
+
+    this.props.login(demoUser);
+  }
+
   renderErrors() {
     return(
       <ul>
@@ -50,7 +62,7 @@ class LoginForm extends React.Component {
     return (
     <div className="session-form-container">
       <form className="login-form" onSubmit={this.handleSubmit}>
-          <h1>Log in or Sign Up!</h1>
+          <h1>Log in!</h1>
           <input type="text"
             value={this.state.identifier}
             onChange={this.update('identifier')}
@@ -63,9 +75,15 @@ class LoginForm extends React.Component {
             placeholder="Password"
           />
           
-          <button className="login-form-submit-button">Submit</button>
-          {this.renderErrors()}
-
+          <div className="login-form-button-wrapper">
+            <button className="login-form-submit-button">Login</button>
+            {this.renderErrors()}
+            <button 
+              className='login-form-submit-button'
+              onClick={this.demoLogin}
+              >Take a Tour
+            </button>
+          </div>
       </form>
     </div>
     );

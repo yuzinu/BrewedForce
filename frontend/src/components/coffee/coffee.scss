@@ -42,11 +42,11 @@
     }
 
     &-origin {
-        font-size: 24px;
-        font-style: italic;
+        font-size: 22px;
     }
 
-    &-source {
+    &-roaster {
+        font-size: 22px;
         font-style: italic;
     }
 }
@@ -65,6 +65,15 @@
   height: 400px;
   width: 400px;
   outline: none;
+}
+
+.score-modal-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .coffee-score-btn {
