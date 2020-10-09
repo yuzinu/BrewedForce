@@ -67,8 +67,6 @@ export default class Shop extends React.Component {
         } else {
             reviews = this.props.shopReviews;
         }
-        
-        debugger;
         return reviews
             .map((review, i) => {
                 return (
@@ -86,7 +84,10 @@ export default class Shop extends React.Component {
     }
 
     renderReviewDate(date) {
-        return date.split('T')[0].split('-').reverse().join('/')
+        date = date.split('T')[0].split('-').reverse()
+        debugger
+        [ date[0], date[1] ] = [ date[1], date[0] ];
+        return date.join('/')
     }
 
     renderCoffees() {
