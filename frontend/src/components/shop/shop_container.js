@@ -12,8 +12,8 @@ const mapStateToProps = state => {
     return {
         shopReviews: state.entities.reviews.shopReviews,
         shopDetails: state.entities.shops.shopDetails,
-        shopCoffees: state.entities.shops.coffees
-       
+        shopCoffees: state.entities.shops.coffees,
+        loggedIn: state.session.isAuthenticated
 
     
     }
