@@ -39,14 +39,25 @@ class SideBar extends React.Component {
   }
 
   render() {
-      return (
-        <div className="sidebar-wrapper">
-          <div className="sidebar">
-              <Link to="/" className="sidebar-header">BF</Link>
-              { this.getLinks() }
+      if (this.props.location.pathname === "/") {
+        return (
+          <div className="sidebar-main-wrapper">
+            <div className="sidebar-main">
+                <Link to="/" className="sidebar-header">BF</Link>
+                { this.getLinks() }
+            </div>
           </div>
-        </div>
-      );
+        );
+      } else {
+        return (
+          <div className="sidebar-wrapper">
+            <div className="sidebar">
+                <Link to="/" className="sidebar-header">BF</Link>
+                { this.getLinks() }
+            </div>
+          </div>
+        );
+      }
   }
 }
 

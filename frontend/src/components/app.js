@@ -35,7 +35,7 @@ class App extends React.Component {
     return(
       <> 
       <div className="app-container">
-        <SideBarContainer />
+        <Route path="/" component={SideBarContainer} />
         <Switch>
           <Route exact path="/" component={MainPage} />
           <AuthRoute exact path="/login" component={LoginFormContainer} />
