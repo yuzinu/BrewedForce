@@ -68,9 +68,9 @@ router.post('/',
 
         const newReview = new Review({
             // user: req.body.user.id,
-            // shop: req.body.shop.id,
             // coffee: req.body.coffee.id,
             // coffee_score: req.body.coffee_score.id,
+            shop: req.body.shop.id,
             rating: req.body.rating,
             text: req.body.text
         });
