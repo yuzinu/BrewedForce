@@ -58,6 +58,8 @@
     font-weight: 700;
     background-color: rgba(0, 0, 0, .4);
     transition: .4s;
+    border: 1px solid #000000;
+    box-shadow: 5px 10px 18px rgba(0,0,0,1);
 
     &:hover {
         background-color: rgba(0,0,0,.75);
@@ -90,33 +92,10 @@
     }
 }
 
-.coffee-index-item-right {
-    height: 200px;
-    width: 200px;
-    color: #ffffff;
-    font-weight: 700;
-    background-color: rgba(0, 0, 0, .4);
-    
-    &-name {
-        font-size: 24px;
-    }
-
-    &-origin {
-        font-size: 18px;
-    }
-}
-
 .coffee-index-carousel, .coffee-index-carousel > *, .CarouselItem > * {
     height: 100%;
 }
 
-.Carousel-button-7 {
-    background-color: #ffffff;
-}
-
-button[class^='Carousel-button-'] {
-    background-color: #ffffff;
-}
 
 .coffee-index-carousel {
     background-image: url('https://i.imgur.com/3B5OMG6.jpg');
