@@ -71,7 +71,7 @@ export default class Shop extends React.Component {
                 return (
                     <div className='review'>
                         <div className='review-rating'><ShopRatings size={'25px'} ratings={review.rating} /></div>
-                        <div className='review-user'>{review.user}</div>
+                        <div className='review-user'>{review.user.username}</div>
                         <div className='review-text'>{review.text}</div>
                     </div>
                 )
