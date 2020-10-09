@@ -27,6 +27,7 @@ export default class Coffee extends React.Component {
 
   handleOpenModal() {
     this.setState({ showModal: true });
+    
   }
  
   handleCloseModal() {
