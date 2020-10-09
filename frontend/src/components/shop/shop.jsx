@@ -26,8 +26,28 @@ export default class Shop extends React.Component {
     }
 
     componentDidMount() {
+        debugger
+        this.props.fetchShopPresence(this.props.match.params.shopId)
+            // .then(() => {
+
+        if (this.props.shopDetails) {
         this.props.fetchShopCoffees(this.props.match.params.shopId)
-          .then(this.props.fetchShopDetails(this.props.match.params.shopId));
+          .then(this.props.fetchShopDetails(this.props.match.params.shopId))
+            .then(this.setState({
+                name: this.props.shopDetails.name,
+                id: this.props.match.params.shopId,
+                location: this.props.shopDetails.formatted_address,
+                price_level: this.props.shopDetails.price_level,
+                ratings: this.calculateRatings(),
+                coffees: this.props.shopCoffees || [],
+                website: this.props.shopDetails.website,
+                phone_number: this.props.shopDetails.formatted_phone_number
+            }, () => this.props.fetchShopReviews(this.state.id)))}
+        else {
+            this.props.fetchShopCoffees(this.props.match.params.shopId)
+            .then(this.props.fetchShopDetails(this.props.match.params.shopId))
+        }
+    // })
     }
 
     componentDidUpdate(prevProps) {
@@ -70,8 +90,6 @@ export default class Shop extends React.Component {
         } else {
             reviews = this.props.shopReviews;
         }
-        
-        debugger;
         return reviews
             .map((review, i) => {
                 return (

@@ -31,6 +31,27 @@ router.get('/:id', (req, res) => {
 
 })
 
+router.post('/:id', (req, res) => {
+  Shop.find({place_id: req.params.id})
+  .then(shop => {
+    if (shop.length === 0) {
+      const newShop = new Shop({
+        place_id: req.params.id
+      })
+
+      newShop
+        .save()
+        .then(shop => res.json(shop))
+    } 
+    else {
+      return res.json('Shop already exists')
+    }
+  })
+  
+})
+  
+    
+
 router.get('/:id/coffees', (req, res) => {
   Shop.find({place_id: req.params.id })
     .then(shop => {
