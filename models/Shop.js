@@ -12,6 +12,7 @@ const ShopSchema = new Schema({
     },
     place_id: {
         type: String,
+        ref: 'shops',
         required: true
     },
     website: {

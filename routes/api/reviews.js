@@ -31,14 +31,6 @@ router.get('/shop/:shop_id', (req, res) => {
         );
 });
 
-router.get('/coffee/:coffee_id', (req, res) => {
-    Review.find({ coffee: req.params.coffee_id })
-        .then(reviews => res.json(reviews))
-        .catch(err =>
-            res.status(404).json({ noReviewsfound: 'No reviews found from that user' }
-            )
-        );
-});
 
 router.get('/:id', (req, res) => {
     Review.findById(req.params.id)
