@@ -1,41 +1,223 @@
 .app-container {
     background-color: white;
+    font-family: 'Hind Guntur', sans-serif;
+    color: rgb(64, 64, 64);
 }
 
+.main-container {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Hind Guntur', sans-serif;
+    color: rgb(64, 64, 64);
+}
 .shop-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     background-color: white;
-    height: 600px;
     align-items: center;
+    margin-top: 50px;
 }
 
-.shop-description {
-    display: flex;
-    flex-direction: column;
-    margin-left: 100px;
-}
+
 
 .shop-title {
     font-size: 50px;
-    font-family: 'Hind Guntur', sans-serif;
+}
+
+.address {
+    padding-top: 15px;
+    text-align: right;
 }
 
 .ratings-container {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-top: 30px;
+    padding-top: 5px;
+    justify-content: flex-end;
 }
+
+.bottom-filler {
+    background-color: rgb(245,248,250);
+    height: 200px;
+    width: 100%;
+    margin-top: 60px;
+}
+
+
+.bottom-container-sub {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 10px;
+    align-items: center;
+
+}
+
+.bottom-container-sub-coffees {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.coffees-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    padding-bottom: 90px;
+    padding-top: 90px;
+    border-bottom: 1px solid rgb(228,233,237);
+    border-top: 1px solid rgb(228,233,237);
+}
+
+.shop-description {
+    display: flex;
+    flex-direction: column;
+    margin-left: 150px;
+}
+
 
 .num-reviews {
     font-size: 20px;
-    font-family: 'Hind Guntur', sans-serif;
     padding-left: 20px;
+}
+
+.coffees {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.coffees-title {
+    font-size: 30px;
+    padding-bottom: 40px;
+    font-weight: 600;
+    width: 60%;
+    text-align: center;
+}
+
+.coffee-name {
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
+.link {
+    text-decoration: none;
+    color: rgb(64, 64, 64);
+    &:hover {
+        cursor: pointer;
+        color: rgb(185, 189, 192);
+    }
+}
+
+.link:visited {
+    text-decoration: none;
+    color: rgb(64, 64, 64);
+    &:hover {
+        cursor: pointer;
+        color: rgb(185, 189, 192);
+    }
+}
+
+.link-write-review {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    color:white;
+    background-color: rgb(185, 189, 192);
+    border: 1px solid;
+    border-color:  rgb(185, 189, 192);
+    border-radius: 6px;
+    padding: 20px;
+    &:hover {
+        cursor: pointer;
+        color: rgb(185, 189, 192);
+        background-color: white;
+    }
+ 
+}
+
+.link-write-review:visited {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 800;
+    color:white;
+    background-color: rgb(185, 189, 192);
+    border: 1px solid;
+    border-color:  rgb(185, 189, 192);
+    border-radius: 6px;
+    padding: 20px;
+    &:hover {
+        cursor: pointer;
+        color: rgb(185, 189, 192);
+        background-color: white;
+    }
+ 
+}
+
+
+
+.bottom-container-sub-reviews {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    width: 35%;
+    margin-top: 50px;
+}
+
+.all-reviews {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 }
 
 .review {
     display: flex;
     flex-direction: column;
+    margin-top: 20px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgb(228,233,237);
+    width: 100%;
+}
+
+
+.review-title {
+    font-size: 30px;
+    font-weight: 600;
+    padding-bottom: 20px;
+    width: 100%;
+    margin-top: 90px;
+    text-align: center;
+}
+
+.review-rating {
+    padding-bottom: 8px;
+ 
+}
+
+.review-user {
+    padding-bottom: 8px;
+}
+
+.review-text {
+    font-size: 14px;
+    padding-top: 5px;
+    // padding-bottom: 5px;
+}
+
+.no-reviews {
+    font-size: 18px;
+    padding: 20px;
 }

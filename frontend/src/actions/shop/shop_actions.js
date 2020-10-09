@@ -1,9 +1,9 @@
 import * as GoogleApiUtil from '../../util/google_api_util';
-import * as ShopApiUtil from '../../'
+import * as ShopsApiUtil from '../../util/shops/shops_api_util';
 
 export const RECEIVE_NEARBY_SHOPS = 'RECEIVE_NEARBY_SHOPS';
 export const RECEIVE_SHOP_DETAILS = 'RECEIVE_SHOP_DETAILS';
-
+export const RECEIVE_SHOP_COFFEES = 'RECEIVE_SHOP_COFFEES';
 
 
 const receiveNearbyShops = shops => {
@@ -17,6 +17,13 @@ const receiveShopDetails = details => {
   return {
     type: RECEIVE_SHOP_DETAILS,
     details
+  }
+}
+
+const receiveShopCoffees = coffees => {
+  return {
+    type: RECEIVE_SHOP_COFFEES,
+    coffees
   }
 }
 
@@ -35,6 +42,15 @@ export const fetchShopDetails = shopId => {
     return GoogleApiUtil.fetchShopDetails(shopId)
       .then(details => {
         dispatch(receiveShopDetails(details))
+      })
+  }
+}
+
+export const fetchShopCoffees = shopId => {
+  return dispatch => {
+    return ShopsApiUtil.fetchShopCoffees(shopId)
+      .then(coffees => {
+        dispatch(receiveShopCoffees(coffees))
       })
   }
 }

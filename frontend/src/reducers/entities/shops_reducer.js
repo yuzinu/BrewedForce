@@ -1,5 +1,6 @@
 import { RECEIVE_NEARBY_SHOPS,
-        RECEIVE_SHOP_DETAILS } from '../../actions/shop/shop_actions';
+        RECEIVE_SHOP_DETAILS,
+        RECEIVE_SHOP_COFFEES } from '../../actions/shop/shop_actions';
 
 const shopsReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -8,7 +9,11 @@ const shopsReducer = (state = {}, action) => {
         case RECEIVE_NEARBY_SHOPS:
             return action.shops
         case RECEIVE_SHOP_DETAILS:
-            return nextState['shopDetails'] = action.details.data
+            nextState['shopDetails'] = action.details.data;
+            return nextState
+        case RECEIVE_SHOP_COFFEES:
+            nextState['coffees'] = action.coffees.data;
+            return nextState
         default:
             return state;
     }
