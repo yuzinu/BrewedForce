@@ -4,7 +4,14 @@ import * as ShopsApiUtil from '../../util/shops/shops_api_util';
 export const RECEIVE_NEARBY_SHOPS = 'RECEIVE_NEARBY_SHOPS';
 export const RECEIVE_SHOP_DETAILS = 'RECEIVE_SHOP_DETAILS';
 export const RECEIVE_SHOP_COFFEES = 'RECEIVE_SHOP_COFFEES';
+export const CHECK_SHOP_PRESENCE = 'CHECK_SHOP_PRESENCE';
 
+const checkShopPresence = (shop) => {
+  return {
+    type: CHECK_SHOP_PRESENCE,
+    shop
+  }
+}
 
 const receiveNearbyShops = shops => {
     return {
@@ -24,6 +31,15 @@ const receiveShopCoffees = coffees => {
   return {
     type: RECEIVE_SHOP_COFFEES,
     coffees
+  }
+}
+
+export const fetchShopPresence = shopId => {
+  return dispatch => {
+    return ShopsApiUtil.fetchShopPresence(shopId)
+      .then(shop => {
+        dispatch(checkShopPresence(shop))
+      })
   }
 }
 

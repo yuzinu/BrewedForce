@@ -1,8 +1,10 @@
 import { RECEIVE_NEARBY_SHOPS,
         RECEIVE_SHOP_DETAILS,
-        RECEIVE_SHOP_COFFEES } from '../../actions/shop/shop_actions';
+        RECEIVE_SHOP_COFFEES, 
+        CHECK_SHOP_PRESENCE } from '../../actions/shop/shop_actions';
 
 const shopsReducer = (state = {}, action) => {
+    debugger
     Object.freeze(state);
     let nextState = Object.assign({}, state);
     switch(action.type) {
@@ -13,6 +15,8 @@ const shopsReducer = (state = {}, action) => {
             return nextState
         case RECEIVE_SHOP_COFFEES:
             nextState['coffees'] = action.coffees.data;
+            return nextState
+        case CHECK_SHOP_PRESENCE:
             return nextState
         default:
             return state;
