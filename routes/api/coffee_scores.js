@@ -81,9 +81,9 @@ router.patch('/:id', passport.authenticate('jwt', { session: false }),
 
 
     CoffeeScore.findByIdAndUpdate(id, req.body, { new: true }, (err, coffee_score) => {
-      res.json(coffee_score)
+      res.json(coffee_score);
     })
-      .then(() => res.status(202).json('Coffee score updated successfully.'))
+      .then(() => res.status(202).json('Coffee score updated successfully.'));
   }
 );
 

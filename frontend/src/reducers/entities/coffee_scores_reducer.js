@@ -9,8 +9,7 @@ const coffeeScoresReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_COFFEE_SCORE:
       const score = action.coffeeScore.data;
-      newState[score._id] = score;
-      
+      newState[score._id] = score;     
       return newState;
     case RECEIVE_COFFEE_SCORES:
       const data = action.coffeeScores.data;

@@ -15,10 +15,11 @@ class SideBar extends React.Component {
   }
 
   getLinks() {
-      if (this.props.loggedIn) {
+    const { user, loggedIn } = this.props;
+      if (loggedIn) {
         return (
             <div className="sidebar-buttons">
-                <Link className="sidebar-buttons-link" to={'/profile'}>Profile</Link>
+                <Link className="sidebar-buttons-link" to={`/users/${user.id}`}>Profile</Link>
                 <Link className="sidebar-buttons-link" to={'/coffees'}>Coffees</Link>
                 <Link className="sidebar-buttons-link" to={'/shops'}>Shops</Link>
                 <Link className="sidebar-buttons-link" to={'/roasters'}>Roasters</Link>

@@ -2,6 +2,7 @@ import * as CoffeeScoresApiUtil from '../../util/coffee_scores/coffee_scores_api
 
 export const RECEIVE_COFFEE_SCORE = 'RECEIVE_COFFEE_SCORE';
 export const RECEIVE_COFFEE_SCORES = 'RECEIVE_COFFEE_SCORES';
+export const RECEIVE_USER_COFFEE_SCORES = 'RECEIVE_USER_COFFEE_SCORES';
 
 
 const receiveCoffeeScore = coffeeScore => {
@@ -14,6 +15,13 @@ const receiveCoffeeScore = coffeeScore => {
 const receiveCoffeeScores = coffeeScores => {
   return {
     type: RECEIVE_COFFEE_SCORES,
+    coffeeScores
+  }
+}
+
+const receiveUserCoffeeScores = coffeeScores => {
+  return {
+    type: RECEIVE_USER_COFFEE_SCORES,
     coffeeScores
   }
 }
@@ -36,5 +44,12 @@ export const fetchCoffeeScores = coffeeId => {
   return dispatch => {
     return CoffeeScoresApiUtil.fetchCoffeeScores(coffeeId)
       .then(coffeeScores => dispatch(receiveCoffeeScores(coffeeScores)))
+  }
+}
+
+export const fetchUserCoffeeScores = userId => {
+  return dispatch => {
+    return CoffeeScoresApiUtil.fetchUserCoffeeScores(userId)
+      .then(scores => dispatch(receiveUserCoffeeScores(scores)))
   }
 }
