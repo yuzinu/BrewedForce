@@ -9,7 +9,6 @@ const reviewsReducer = (state = {}, action) => {
       newState[action.review.data._id] = action.review.data;
       return newState;
       case RECEIVE_SHOP_REVIEWS:
-      debugger;
       newState['shopReviews'] = action.reviews.data;
       return newState;
     default:
