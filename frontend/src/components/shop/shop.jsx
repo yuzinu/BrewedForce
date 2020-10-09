@@ -119,10 +119,10 @@ export default class Shop extends React.Component {
     }
 
     renderReviewDate(date) {
-        date = date.split('T')[0].split('-').reverse()
-        
-        [ date[0], date[1] ] = [ date[1], date[0] ];
-        return date.join('/')
+        date = date.split('T')[0].split('-').reverse();
+        let render_date = date.join('/').split('/');
+        [ render_date[0], render_date[1] ] = [ date[1], date[0] ]
+        return render_date.join('/')
     }
 
     renderCoffees() {
