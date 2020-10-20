@@ -5,6 +5,15 @@ export const RECEIVE_NEARBY_SHOPS = 'RECEIVE_NEARBY_SHOPS';
 export const RECEIVE_SHOP_DETAILS = 'RECEIVE_SHOP_DETAILS';
 export const RECEIVE_SHOP_COFFEES = 'RECEIVE_SHOP_COFFEES';
 export const CHECK_SHOP_PRESENCE = 'CHECK_SHOP_PRESENCE';
+export const RECEIVE_SEARCH_RESULTS = 'RECEIVE_SEARCH_RESULTS';
+
+const receiveSearchResults = shops => {
+  debugger
+  return {
+    type: RECEIVE_SEARCH_RESULTS,
+    shops
+  }
+}
 
 const checkShopPresence = (shop) => {
   return {
@@ -31,6 +40,15 @@ const receiveShopCoffees = coffees => {
   return {
     type: RECEIVE_SHOP_COFFEES,
     coffees
+  }
+}
+
+export const fetchSearchResults = input => {
+  return dispatch => {
+    return GoogleApiUtil.fetchSearchResults(input)
+    .then(shops => {
+      dispatch(receiveSearchResults(shops))
+    })
   }
 }
 

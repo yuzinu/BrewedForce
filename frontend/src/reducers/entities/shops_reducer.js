@@ -1,7 +1,8 @@
 import { RECEIVE_NEARBY_SHOPS,
         RECEIVE_SHOP_DETAILS,
         RECEIVE_SHOP_COFFEES, 
-        CHECK_SHOP_PRESENCE } from '../../actions/shop/shop_actions';
+        CHECK_SHOP_PRESENCE,
+        RECEIVE_SEARCH_RESULTS } from '../../actions/shop/shop_actions';
 
 const shopsReducer = (state = {}, action) => {
     debugger
@@ -17,6 +18,9 @@ const shopsReducer = (state = {}, action) => {
             nextState['coffees'] = action.coffees.data;
             return nextState
         case CHECK_SHOP_PRESENCE:
+            return nextState
+        case RECEIVE_SEARCH_RESULTS:
+            nextState['searchResults'] = action.shops.data;
             return nextState
         default:
             return state;
