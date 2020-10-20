@@ -42,7 +42,7 @@ class App extends React.Component {
           <AuthRoute exact path="/login" component={LoginFormContainer} />
           <AuthRoute exact path="/signup" component={SignupFormContainer} />
           <ProtectedRoute exact path="/users/:userId" component={UserContainer} />
-          <ProtectedRoute exact path="/reviews/review_form" component={ReviewFormContainer} />
+          {/* <ProtectedRoute exact path="/reviews/review_form" component={ReviewFormContainer} /> */}
           <ProtectedRoute exact path="/reviews/review_form/:reviewId/edit" component={EditReviewFormContainer} />
           <Route exact path ="/coffees/:coffeeId"
             render={(props) => (

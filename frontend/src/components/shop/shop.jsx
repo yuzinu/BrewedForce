@@ -2,10 +2,9 @@ import React from 'react';
 import './shop.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone} from '@fortawesome/free-solid-svg-icons';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faWindowMaximize } from '@fortawesome/free-solid-svg-icons';
-
-
+import ReactModal from 'react-modal';
 import ReviewFormContainer from '../review/review_form_container';
 import ShopRatings from './ratings';
 
@@ -23,6 +22,19 @@ export default class Shop extends React.Component {
             phone_number: ''
         };
         this.calculateRatings = this.calculateRatings.bind(this);
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
+    }
+
+    handleOpenModal() {
+      this.setState({ showModal: true });
+    }
+
+    handleCloseModal() {
+      this.setState({ showModal: false });
+      const shopId = this.props.match.params.shopId;
+      this.props.fetchShopReviews(shopId)
+        .then(() => this.calculateRatings());
     }
 
     componentDidMount() {
@@ -106,7 +118,10 @@ export default class Shop extends React.Component {
     }
 
     renderReviewDate(date) {
-        return date.split('T')[0].split('-').reverse().join('/')
+        date = date.split('T')[0].split('-').reverse()
+        
+        [ date[0], date[1] ] = [ date[1], date[0] ];
+        return date.join('/')
     }
 
     renderCoffees() {
@@ -141,6 +156,7 @@ export default class Shop extends React.Component {
     
     
     render() {
+        const shopId = this.props.match.params.shopId
         const phone = <FontAwesomeIcon className='phone-icon' icon={faPhone}/>
         const browser = <FontAwesomeIcon className='browser-icon' icon={faWindowMaximize} />
         if(this.state.name === '') return null;
@@ -179,9 +195,23 @@ export default class Shop extends React.Component {
 
                         <div className='bottom-container-sub-reviews'>
                             <div className='review-title'>Reviews</div>
-                            <Link className='link-write-review' to='/reviews/review_form'>
+                            {/* <Link className='link-write-review' to='/reviews/review_form'>
                                 <div className='write-a-review'>Write a Review</div>
-                            </Link>
+                            </Link> */}
+                            {this.props.loggedIn ? (<div className='score-modal-btn-container'>
+                              <button onClick={this.handleOpenModal} className='coffee-score-btn'>
+                                Write a Review
+                              </button>
+                              <ReactModal 
+                                isOpen={this.state.showModal} 
+                                // appElement={root} 
+                                className='score-modal'
+                                overlayClassName='score-modal-background'
+                                onRequestClose={this.handleCloseModal}
+                              >
+                                <ReviewFormContainer shop={shopId} closeModal={this.handleCloseModal}/>
+                              </ReactModal>
+                            </div>) : (<></>)}
                             <div className={this.renderReviews() === 'Be the first to write a review' ? 'no-reviews': 'all-reviews' }>
                                 {this.renderReviews()}
                             </div>

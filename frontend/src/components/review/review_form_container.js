@@ -1,24 +1,26 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import ReviewForm from './review_form';
 import { createCoffeeScore } from '../../actions/coffee_score/coffee_score_action';
 import { createReview } from '../../actions/review/review_actions';
 
 const mSTP = (state, ownProps) => {
   const user = state.session.user;
-  const coffees = state.entities.coffees;
+  
+  // const shop = ownProps.match.params.shopId;
   // GET SHOP INFO
   return {
     user,
-    coffees: Object.values(coffees)
     // shop
+    // coffees: Object.values(coffees)
   };
 };
 
 const mDTP = dispatch => {
+  // createCoffeeScore: score => dispatch(createCoffeeScore(score)),
   return {
-    createCoffeeScore: score => dispatch(createCoffeeScore(score)),
     createReview: review => dispatch(createReview(review))
   };
 };
 
-export default connect(mSTP, mDTP)(ReviewForm);
+export default withRouter(connect(mSTP, mDTP)(ReviewForm));
