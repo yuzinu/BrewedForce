@@ -10,7 +10,7 @@ export const fetchShopDetails = shopId => {
 }
 
 export const fetchSearchResults = id => {
-  debugger
+  
   return axios.get(`/api/shops/search/${id}`)
 }
 

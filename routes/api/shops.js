@@ -24,7 +24,7 @@ router.get('/search/photo/:ref', (req, res) => {
     json: true
   };
   rp(params)
-    .then(photo => res.status(200).json(photo))
+    .then(photo => res.status(200).json(base64(photo)))
     .catch(err => res.status(400).json(err));
 })
   

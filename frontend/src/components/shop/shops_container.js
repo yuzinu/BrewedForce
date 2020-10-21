@@ -4,7 +4,7 @@ import Shops from './shops';
 import { fetchSearchResults, fetchSearchPhoto } from '../../actions/shop/shop_actions';
 
 const mapStateToProps = state => {
-    debugger
+    
     return {
         searchResults: state.entities.shops.searchResults
     }

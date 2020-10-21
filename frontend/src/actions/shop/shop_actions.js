@@ -8,7 +8,7 @@ export const CHECK_SHOP_PRESENCE = 'CHECK_SHOP_PRESENCE';
 export const RECEIVE_SEARCH_RESULTS = 'RECEIVE_SEARCH_RESULTS';
 
 const receiveSearchResults = shops => {
-  debugger
+  
   return {
     type: RECEIVE_SEARCH_RESULTS,
     shops

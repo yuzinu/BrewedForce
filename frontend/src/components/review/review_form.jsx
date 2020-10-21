@@ -62,7 +62,7 @@ export default class ReviewForm extends React.Component {
     //   flavor,
     //   aftertaste
     // })
-    debugger
+    
     createReview({
       user,
       shop,
