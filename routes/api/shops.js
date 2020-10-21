@@ -6,6 +6,28 @@ const rp = require('request-promise');
 const Shop = require('../../models/Shop');
 const Coffee = require('../../models/Coffee');
 
+router.get('/search/:id', (req, res) => {
+  const params = {
+    method: 'get',
+    url: `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${req.params.id}&type=cafe&key=${keys.googleKey}`,
+    json: true
+  };
+  rp(params)
+    .then(data => res.status(200).json(data.results))
+    .catch(err => res.status(400).json(err));
+})
+
+router.get('/search/photo/:ref', (req, res) => {
+  const params = {
+    method: 'get',
+    url: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${req.params.ref}&key=${keys.googleKey}`,
+    json: true
+  };
+  rp(params)
+    .then(photo => res.status(200).json(photo))
+    .catch(err => res.status(400).json(err));
+})
+  
 router.get('/', (req, res) => {
   const location = req.params.location;
   const params = {

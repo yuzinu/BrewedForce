@@ -12,6 +12,7 @@ import CoffeeContainer from './coffee/coffee_container';
 import CoffeeIndex from './coffee/coffee_index_container';
 import ShopContainer from './shop/shop_container';
 import UserContainer from './user/user_container';
+import ShopsContainer from './shop/shops_container';
 
 class App extends React.Component {
   constructor(props) {
@@ -50,6 +51,8 @@ class App extends React.Component {
           />
           <Route path ="/coffees" component={CoffeeIndex} />
           <Route path="/shops/:shopId" component={ShopContainer} />
+          <Route path = "/shops" component={ShopsContainer} />
+          
           {/* <Route exact path ="/coffees/:coffeeId" component={(location) => <CoffeeContainer location={location} />} /> */}
         </Switch>
       </div>

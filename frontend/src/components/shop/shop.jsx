@@ -38,7 +38,6 @@ export default class Shop extends React.Component {
     }
 
     componentDidMount() {
-        
         this.props.fetchShopPresence(this.props.match.params.shopId)
             // .then(() => {
 
