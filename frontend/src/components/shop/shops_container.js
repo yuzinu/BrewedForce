@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Shops from './shops';
-import { fetchSearchResults, fetchSearchPhoto } from '../../actions/shop/shop_actions';
+import { fetchSearchResults, clearSearchResults, fetchSearchPhoto } from '../../actions/shop/shop_actions';
 
 const mapStateToProps = state => {
     
@@ -12,7 +12,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     fetchSearchResults: input => dispatch(fetchSearchResults(input)),
-    fetchSearchPhoto: ref => dispatch(fetchSearchResults(ref))
+    fetchSearchPhoto: ref => dispatch(fetchSearchResults(ref)),
+    clearSearchResults: () => dispatch(clearSearchResults())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shops);
