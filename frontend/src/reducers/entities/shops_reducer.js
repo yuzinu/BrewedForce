@@ -2,7 +2,8 @@ import { RECEIVE_NEARBY_SHOPS,
         RECEIVE_SHOP_DETAILS,
         RECEIVE_SHOP_COFFEES, 
         CHECK_SHOP_PRESENCE,
-        RECEIVE_SEARCH_RESULTS } from '../../actions/shop/shop_actions';
+        RECEIVE_SEARCH_RESULTS,
+        CLEAR_SEARCH_RESULTS } from '../../actions/shop/shop_actions';
 
 const shopsReducer = (state = {}, action) => {
     
@@ -22,6 +23,9 @@ const shopsReducer = (state = {}, action) => {
         case RECEIVE_SEARCH_RESULTS:
             nextState['searchResults'] = action.shops.data;
             return nextState
+        case CLEAR_SEARCH_RESULTS:
+            nextState = {}
+            return nextState;
         default:
             return state;
     }

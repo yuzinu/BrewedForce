@@ -6,9 +6,9 @@ export const RECEIVE_SHOP_DETAILS = 'RECEIVE_SHOP_DETAILS';
 export const RECEIVE_SHOP_COFFEES = 'RECEIVE_SHOP_COFFEES';
 export const CHECK_SHOP_PRESENCE = 'CHECK_SHOP_PRESENCE';
 export const RECEIVE_SEARCH_RESULTS = 'RECEIVE_SEARCH_RESULTS';
+export const CLEAR_SEARCH_RESULTS = 'CLEAR_SEARCH_RESULTS';
 
 const receiveSearchResults = shops => {
-  
   return {
     type: RECEIVE_SEARCH_RESULTS,
     shops
@@ -40,6 +40,12 @@ const receiveShopCoffees = coffees => {
   return {
     type: RECEIVE_SHOP_COFFEES,
     coffees
+  }
+}
+
+export const clearSearchResults = () => {
+  return {
+    type: CLEAR_SEARCH_RESULTS
   }
 }
 
