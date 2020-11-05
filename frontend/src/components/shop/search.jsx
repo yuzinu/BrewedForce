@@ -24,13 +24,15 @@ class SearchBar extends React.Component {
       return e => {
         if (e.currentTarget.value.length === 0) {
           this.props.props.clearSearchResults();
-        }
+          this.setState({ fragment: '' })
+        } else {
           this.setState({
               fragment: e.currentTarget.value,
               status: true
           }, () => this.fetchSearchResultsDebounced(this.state.fragment)
           );
         }
+      }
     }
 
 
@@ -68,6 +70,7 @@ class SearchBar extends React.Component {
         const { props, clearResults } = this.props;
         const { fragment } = this.state;
 
+        if (fragment === '') return null;
 
         if ((props.searchResults === undefined || props.searchResults.length === 0) && fragment.length > 2) { 
           // setTimeout(() => (<div className='search-result-error'>We were unable to find any results for your search.</div>), 1)
@@ -118,9 +121,15 @@ class SearchBar extends React.Component {
                 <div className={this.state.fragment !== '' ? 'results-box' : 'results-box-hidden'}>
                     {/* <div className={(this.props.props.searchResults === undefined || this.props.props.searchResults.length === 0) ?
                         'results-box-title-hidden' : 'results-box-title'}>Shops</div> */}
-                    <div className='results-box-body'>
-                        {this.renderResults()}
-                    </div>
+                    {loading && this.state.fragment !== '' ? (
+                      <div className='results-box-body spinner'>
+                        {spinner}
+                      </div>
+                    ) : (
+                      <div className='results-box-body'>
+                          {this.renderResults()}
+                      </div>
+                    )}
 
                 </div>
 
