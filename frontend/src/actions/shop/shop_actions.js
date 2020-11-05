@@ -7,6 +7,7 @@ export const RECEIVE_SHOP_COFFEES = 'RECEIVE_SHOP_COFFEES';
 export const CHECK_SHOP_PRESENCE = 'CHECK_SHOP_PRESENCE';
 export const RECEIVE_SEARCH_RESULTS = 'RECEIVE_SEARCH_RESULTS';
 export const CLEAR_SEARCH_RESULTS = 'CLEAR_SEARCH_RESULTS';
+export const START_LOADING = 'START_LOADING';
 
 const receiveSearchResults = shops => {
   return {
@@ -49,8 +50,15 @@ export const clearSearchResults = () => {
   }
 }
 
+export const startLoading = () => {
+  return {
+    type: START_LOADING
+  }
+}
+
 export const fetchSearchResults = input => {
   return dispatch => {
+    dispatch(startLoading());
     return GoogleApiUtil.fetchSearchResults(input)
     .then(shops => {
       dispatch(receiveSearchResults(shops))

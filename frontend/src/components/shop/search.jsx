@@ -2,6 +2,8 @@ import React from 'react';
 import './shops.scss'
 import { Link } from 'react-router-dom';
 import { throttle, debounce } from 'throttle-debounce';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 class SearchBar extends React.Component {
     constructor(props) {
@@ -35,7 +37,7 @@ class SearchBar extends React.Component {
     searchField() {
         return (
             <div className='search-bar'>
-                <input placeholder="Search" type="text"
+                <input placeholder="Search Coffee Shops" type="text"
                     value={this.state.fragment}
                     onChange={this.update()}
                     className={this.state.fragment === '' ? 'search-input' : 'search-input-open'} />
@@ -107,6 +109,8 @@ class SearchBar extends React.Component {
     }
 
     render() {
+        const spinner = <FontAwesomeIcon icon={faSpinner} spin/>;
+        const { loading } = this.props.props;
         return (
             <div className='sub-nav-2'>
                 {/* <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CmRZAAAA-RRkg_wP7iiMrVNkgol83U1qVhltljGcaJcbSNNzA77akR-CRjP1f1P2KcW_YN58ZfU_5w4o2PMJ-l4gBAR5rF8cIkEMJ1hueIybrmSonJDnwxeYbQkS-HtNPdvm7JIWEhB_hnOgzxMN_R0OwcdbrHT7GhSo2f2eHQHs7NwFN7xVOeAWzZ8lpg&sensor=false&key=AIzaSyDvUSqdDw6TdxHjNZudz295QAu9ZWjYm0k`}/> */}
@@ -115,7 +119,6 @@ class SearchBar extends React.Component {
                     {/* <div className={(this.props.props.searchResults === undefined || this.props.props.searchResults.length === 0) ?
                         'results-box-title-hidden' : 'results-box-title'}>Shops</div> */}
                     <div className='results-box-body'>
-                        {console.log('inside render')}
                         {this.renderResults()}
                     </div>
 
@@ -125,7 +128,7 @@ class SearchBar extends React.Component {
 
                 </div>
             </div>
-        )
+        );
     }
 }
 

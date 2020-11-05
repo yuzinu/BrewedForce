@@ -4,9 +4,9 @@ import Shops from './shops';
 import { fetchSearchResults, clearSearchResults, fetchSearchPhoto } from '../../actions/shop/shop_actions';
 
 const mapStateToProps = state => {
-    
     return {
-        searchResults: state.entities.shops.searchResults
+        searchResults: state.entities.shops.searchResults,
+        loading: state.ui.loading
     }
 };
 
