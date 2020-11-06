@@ -15,7 +15,7 @@ router.get('/search/:id', (req, res) => {
   rp(params)
     .then(data => res.status(200).json(data.results))
     .catch(err => res.status(400).json(err));
-})
+});
 
 router.get('/search/photo/:ref', (req, res) => {
   const params = {
@@ -26,9 +26,9 @@ router.get('/search/photo/:ref', (req, res) => {
   rp(params)
     .then(photo => res.status(200).json(base64(photo)))
     .catch(err => res.status(400).json(err));
-})
+});
   
-router.get('/', (req, res) => {
+router.get('/search', (req, res) => {
   const location = req.params.location;
   const params = {
     method: 'get',
@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
   rp(params)
     .then(data => res.status(200).json(data.results))
     .catch(err => res.status(400).json(err));
-})
+});
 
 router.get('/:id', (req, res) => {
   console.log(req.params.id);
@@ -51,7 +51,7 @@ router.get('/:id', (req, res) => {
     .then(data => res.status(200).json(data.result))
     .catch(err => res.status(400).json(err));
 
-})
+});
 
 router.post('/:id', (req, res) => {
   Shop.find({place_id: req.params.id})
@@ -59,18 +59,18 @@ router.post('/:id', (req, res) => {
     if (shop.length === 0) {
       const newShop = new Shop({
         place_id: req.params.id
-      })
+      });
 
       newShop
         .save()
-        .then(shop => res.json(shop))
+        .then(shop => res.json(shop));
     } 
     else {
-      return res.json('Shop already exists')
+      return res.json('Shop already exists');
     }
-  })
+  });
   
-})
+});
   
     
 
@@ -81,7 +81,7 @@ router.get('/:id/coffees', (req, res) => {
       let coffees_data = [];
 
       coffees.forEach((coffee_id) => {
-        coffees_data.push(Coffee.find(coffee_id))
+        coffees_data.push(Coffee.find(coffee_id));
       });
       return Promise.all(coffees_data);
     })
@@ -90,5 +90,13 @@ router.get('/:id/coffees', (req, res) => {
     })
     .catch(err => res.status(404).json({noshopfound: 'No shop found'}));
 });
+
+// fetch all shops in db
+router.get('/', (req, res) => {
+  Shop.find()
+    .then(shops => res.json(shops))
+    .catch(err => res.status(404).json({ noshopsfound: 'No shops found'}));
+});
+
 
 module.exports = router;

@@ -17,6 +17,13 @@ const receiveShopReviews = reviews => {
   }
 }
 
+export const fetchAllShopReviews = () => {
+  return dispatch => {
+    return ReviewsApiUtil.fetchAllShopReviews()
+      .then(reviews => dispatch(receiveShopReviews(reviews)))
+  }
+}
+
 export const fetchShopReviews = shopId => {
   return dispatch => {
     return ReviewsApiUtil.fetchShopReviews(shopId)

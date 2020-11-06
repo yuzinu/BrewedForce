@@ -11,3 +11,7 @@ export const updateReview = review => {
 export const fetchShopReviews = shopId => {
   return axios.get(`/api/reviews/shop/${shopId}`)
 }
+
+export const fetchAllShopReviews = () => {
+  return axios.get('/api/reviews/')
+}

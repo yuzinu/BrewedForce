@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const ShopSchema = new Schema({
     coffees: {
         type: [Schema.Types.ObjectId],
         ref: 'coffees'
     },
-    review: {
+    reviews: {
         type: [Schema.Types.ObjectId],
         ref: 'reviews'
     },
