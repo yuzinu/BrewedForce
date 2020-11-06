@@ -10,22 +10,23 @@ import SearchBar from './search';
 export default class UserNav extends React.Component {
     constructor(props) {
         super(props);
-        // this.clearResults = this.clearResults.bind(this);
+        this.formatTopShops = this.formatTopShops.bind(this);
     }
 
-    // componentDidMount() {
-    //   this.props.clearSearchResults();
-    // }
+    componentDidMount() {
+      this.props.fetchAllShops()
+        .then(shops => this.formatTopShops(shops.shops.data));
+    }
 
-    // clearResults() {
-    //   this.props.clearSearchResults();
-    // }
+    formatTopShops(shops) {
+      // debugger
+    }
 
     render() {
         return (
           <div className='shops-show'>
             <div className='shops-show-left'>
-              <p>SHOWS SHOW LEFT</p>
+              <p className='shops-show-left-title'>Top Rated Coffee Shops</p>
             </div>
             <div className='shops-show-center'>
 

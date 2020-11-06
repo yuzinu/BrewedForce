@@ -7,3 +7,7 @@ export const fetchShopCoffees = place_id => {
 export const fetchShopPresence = place_id => {
     return axios.post(`/api/shops/${place_id}`)
 }
+
+export const fetchAllShops = () => {
+  return axios.get('/api/shops/');
+}

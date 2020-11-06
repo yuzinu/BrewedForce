@@ -8,6 +8,7 @@ export const CHECK_SHOP_PRESENCE = 'CHECK_SHOP_PRESENCE';
 export const RECEIVE_SEARCH_RESULTS = 'RECEIVE_SEARCH_RESULTS';
 export const CLEAR_SEARCH_RESULTS = 'CLEAR_SEARCH_RESULTS';
 export const START_LOADING = 'START_LOADING';
+export const RECEIVE_ALL_SHOPS = 'RECEIVE_ALL_SHOPS';
 
 const receiveSearchResults = shops => {
   return {
@@ -53,6 +54,13 @@ export const clearSearchResults = () => {
 export const startLoading = () => {
   return {
     type: START_LOADING
+  }
+}
+
+export const receiveAllShops = shops => {
+  return {
+    type: RECEIVE_ALL_SHOPS,
+    shops
   }
 }
 
@@ -103,3 +111,9 @@ export const fetchShopCoffees = shopId => {
   }
 }
 
+export const fetchAllShops = () => {
+  return dispatch => {
+    return ShopsApiUtil.fetchAllShops()
+      .then(shops => dispatch(receiveAllShops(shops)));
+  }
+}
