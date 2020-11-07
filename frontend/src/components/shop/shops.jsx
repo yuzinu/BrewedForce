@@ -15,11 +15,11 @@ export default class UserNav extends React.Component {
 
     componentDidMount() {
       this.props.fetchAllShops()
-        .then(shops => this.formatTopShops(shops.shops.data));
+        .then(() => this.formatTopShops());
     }
 
-    formatTopShops(shops) {
-      // debugger
+    formatTopShops() {
+      console.log(this.props.shops);
     }
 
     render() {

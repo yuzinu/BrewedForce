@@ -10,7 +10,8 @@ import { fetchSearchResults,
 const mapStateToProps = state => {
     return {
         searchResults: state.entities.shops.searchResults,
-        loading: state.ui.loading
+        loading: state.ui.loading,
+        shops: Object.values(state.entities.shops)
     }
 };
 
