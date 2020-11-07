@@ -104,7 +104,7 @@ export default class Shop extends React.Component {
         return reviews
             .map((review, i) => {
                 return (
-                    <div className='review'>
+                    <div className='review' key={review._id}>
                         <div className='review-rating'><ShopRatings size={'25px'} ratings={review.rating} /></div>
                         <div className='review-sub-row'>
                             <div className='review-user'>{review.user.username}</div>
@@ -208,6 +208,7 @@ export default class Shop extends React.Component {
                                 className='score-modal'
                                 overlayClassName='score-modal-background'
                                 onRequestClose={this.handleCloseModal}
+                                ariaHideApp={false}
                               >
                                 <ReviewFormContainer shop={shopId} closeModal={this.handleCloseModal}/>
                               </ReactModal>
