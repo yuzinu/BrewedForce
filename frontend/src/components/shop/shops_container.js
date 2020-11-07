@@ -11,7 +11,8 @@ const mapStateToProps = state => {
     return {
         searchResults: state.entities.shops.searchResults,
         loading: state.ui.loading,
-        shops: Object.values(state.entities.shops)
+        shops: Object.values(state.entities.shops),
+        reviews: Object.values(state.entities.reviews)
     }
 };
 

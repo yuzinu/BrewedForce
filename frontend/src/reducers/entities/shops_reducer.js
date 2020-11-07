@@ -29,9 +29,7 @@ const shopsReducer = (state = {}, action) => {
             nextState = {}
             return nextState;
         case RECEIVE_ALL_SHOPS:
-          action.shops.data.forEach(shop => {
-            nextState[shop._id] = shop;
-          });
+          nextState['shops'] = action.shops.data;
           return nextState;
         default:
             return state;

@@ -103,6 +103,7 @@ export default class Shop extends React.Component {
         }
         return reviews
             .map((review, i) => {
+              debugger
                 return (
                     <div className='review' key={review._id}>
                         <div className='review-rating'><ShopRatings size={'25px'} ratings={review.rating} /></div>
@@ -118,6 +119,7 @@ export default class Shop extends React.Component {
     }
 
     renderReviewDate(date) {
+        if (typeof date === 'undefined') return '';
         date = date.split('T')[0].split('-').reverse();
         let render_date = date.join('/').split('/');
         [ render_date[0], render_date[1] ] = [ date[1], date[0] ]
