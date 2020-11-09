@@ -10,6 +10,10 @@ const ShopSchema = new Schema({
         type: [Schema.Types.ObjectId],
         ref: 'reviews'
     },
+    rating: {
+        type: Number,
+        default: 0
+    },
     place_id: {
         type: String,
         ref: 'shops',

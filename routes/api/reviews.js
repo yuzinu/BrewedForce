@@ -3,7 +3,8 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-const User = require('../../models/User')
+const User = require('../../models/User');
+const Shop = require('../../models/Shop');
 const Review = require('../../models/Review');
 const validateReviewInput = require('../../validation/reviews');
 
@@ -68,8 +69,6 @@ router.post('/',
 
         const newReview = new Review({
             user: req.body.user.id,
-            // coffee: req.body.coffee.id,
-            // coffee_score: req.body.coffee_score.id,
             shop: req.body.shop,
             rating: req.body.rating,
             text: req.body.text
@@ -77,7 +76,23 @@ router.post('/',
 
         newReview
             .save()
-            .then(review => res.json(review));
+            .then(review => {
+                debugger;
+                let average = Review.find({ place: req.body.shop })
+                    .then(reviews => {
+                        let total = 0;
+                        reviews.forEach(review => total += review.rating);
+                        return total / reviews.length;
+                    });
+
+                Shop.findOneAndUpdate(
+                    {place_id: req.body.shop},
+                    {$push: { reviews: review },
+                     rating: average},
+                    {safe: true, upsert:true},
+                    () => res.json(review)
+                );
+            });
     }
     
 );

@@ -50,7 +50,21 @@ router.get('/:id', (req, res) => {
   rp(params)
     .then(data => res.status(200).json(data.result))
     .catch(err => res.status(400).json(err));
+});
 
+router.patch('/:id', (req, res) => {
+  const shop = Shop.find({ place_id: req.params.id });
+
+  let total = 0;
+  for (review of shop.reviews) {
+    total += review.rating;
+  }
+  let new_rating = total / shop.reviews.length;
+
+  shop.updateOne({ rating: new_rating }, (err, shop) => {
+    if (err) throw err;
+    res.json(shop);
+  });
 });
 
 router.post('/:id', (req, res) => {

@@ -91,7 +91,9 @@ export default class Shop extends React.Component {
         for (let i = 0; i < reviews.length; i++) {
             sum += reviews[i].rating
         }
-        return sum/this.props.shopReviews.length;
+
+        let average = sum/this.props.shopReviews.length;
+        return average;
     }
 
     renderReviews() {
