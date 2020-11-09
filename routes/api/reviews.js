@@ -74,27 +74,46 @@ router.post('/',
             text: req.body.text
         });
 
-        newReview
-            .save()
-            .then(review => {
-                debugger;
-                let average = Review.find({ place: req.body.shop })
-                    .then(reviews => {
-                        let total = 0;
-                        reviews.forEach(review => total += review.rating);
-                        return total / reviews.length;
-                    });
-
-                Shop.findOneAndUpdate(
-                    {place_id: req.body.shop},
-                    {$push: { reviews: review },
-                     rating: average},
-                    {safe: true, upsert:true},
-                    () => res.json(review)
-                );
-            });
+        
+        
+        // console.log(typeof review);
+        // console.log(review._id);
+        // console.log(review.user);
+        // console.log(review.shop);
+        // if (!hasReview) {
+        Review.exists({ user: req.body.user.id })
+          .then(hasReview => {
+            debugger;
+            if (hasReview === false) {
+              newReview
+                  .save()
+                  .then(review => {
+                      Review.find({ shop: req.body.shop })
+                          .then(reviews => {
+                            console.log(reviews.length);
+                              let total = 0;
+                              for (let i = 0; i < reviews.length; i++) {
+                                total += reviews[i].rating;
+                              }
+                              return total / reviews.length;
+                          })
+                          .then(average => Shop.findOneAndUpdate(
+                            {place_id: req.body.shop},
+                            {rating: average},
+                            {new: true}
+                          ));
+                      Shop.findOneAndUpdate(
+                          {place_id: req.body.shop},
+                          {$push: { reviews: review }},
+                          {new: true},
+                          () => res.status(200).json(review)
+                      );
+                  });
+            } else {
+              res.status(403).json({ alreadyReviewed: "A review already exists"})
+            }
+          });
     }
-    
 );
 
 router.patch('/:id', passport.authenticate('jwt', { session: false }),

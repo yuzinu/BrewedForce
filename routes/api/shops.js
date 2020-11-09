@@ -41,7 +41,7 @@ router.get('/search', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  console.log(req.params.id);
+  // console.log(req.params.id);
   const params = {
     method: 'get',
     url: `https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.params.id}&key=${keys.googleKey}`,

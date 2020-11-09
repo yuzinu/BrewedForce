@@ -39,10 +39,8 @@ export default class UserNav extends React.Component {
       const topShops = [];
       const sorted = Object.values(this.state).sort((a, b) => b - a);
       let i = 0;
-      Object.keys(this.state).forEach(shop => {
-        // console.log(shop)
-        // console.log(this.props.shops.shops)
-      });
+      // Object.keys(this.state).forEach(shop => {
+      // });
     }
 
     render() {

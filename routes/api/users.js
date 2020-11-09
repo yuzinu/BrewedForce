@@ -120,7 +120,7 @@ router.patch('/:id', passport.authenticate('jwt', {session: false}), (req, res) 
     return res.status(401).json("Unauthorized");
   }
 
-  console.log(req.body);
+  // console.log(req.body);
   if (password) {
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(password, salt, (err, hash) => {
