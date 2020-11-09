@@ -4,14 +4,15 @@ import Shops from './shops';
 import { fetchSearchResults, 
   clearSearchResults, 
   fetchSearchPhoto,
-  fetchAllShops
+  fetchAllShops,
+  fetchShopDetails
 } from '../../actions/shop/shop_actions';
 
 const mapStateToProps = state => {
     return {
         searchResults: state.entities.shops.searchResults,
         loading: state.ui.loading,
-        shops: Object.values(state.entities.shops),
+        shops: state.entities.shops,
         reviews: Object.values(state.entities.reviews)
     }
 };
@@ -21,7 +22,8 @@ const mapDispatchToProps = dispatch => ({
     fetchSearchPhoto: ref => dispatch(fetchSearchResults(ref)),
     clearSearchResults: () => dispatch(clearSearchResults()),
     fetchAllShops: () => dispatch(fetchAllShops()),
-    fetchAllShopReviews: () => dispatch(fetchAllShopReviews())
+    fetchAllShopReviews: () => dispatch(fetchAllShopReviews()),
+    fetchShopDetails: shopId => dispatch(fetchShopDetails(shopId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shops);

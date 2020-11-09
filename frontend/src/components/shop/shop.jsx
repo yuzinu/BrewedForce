@@ -103,7 +103,6 @@ export default class Shop extends React.Component {
         }
         return reviews
             .map((review, i) => {
-              debugger
                 return (
                     <div className='review' key={review._id}>
                         <div className='review-rating'><ShopRatings size={'25px'} ratings={review.rating} /></div>

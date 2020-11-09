@@ -10,6 +10,7 @@ import SearchBar from './search';
 export default class UserNav extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {};
         this.formatTopShops = this.formatTopShops.bind(this);
     }
 
@@ -22,7 +23,13 @@ export default class UserNav extends React.Component {
     }
 
     formatTopShops() {
-      console.log(this.props.shops);
+      this.props.shops.shops.forEach(shop => {
+        // console.log(shop.place_id)
+        this.props.fetchShopDetails(shop.place_id)
+        .then(() => this.setState({ [shop.place_id]: this.props.shops.shopDetails.rating }))
+          // .then(() => console.log(this.props.shops))
+      })
+      setTimeout(() => console.log(this.state), 5000);
     }
 
     render() {
