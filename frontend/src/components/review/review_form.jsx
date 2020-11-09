@@ -12,14 +12,8 @@ export default class ReviewForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // coffee: '',
       text: '',
       rating: '',
-      // aroma: '',
-      // acidity: '',
-      // body: '',
-      // flavor: '',
-      // aftertaste: '',
       awsLinks: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -49,19 +43,8 @@ export default class ReviewForm extends React.Component {
     const { 
       user, shop, createReview, closeModal } = this.props;
     const { 
-    //   coffee, aroma, acidity, body, flavor, aftertaste, 
       rating, text
     } = this.state;
-    // createCoffeeScore({
-    //   user,
-    //   // shop, // REPLACE WITH SHOP ID
-    //   coffee,
-    //   aroma,
-    //   acidity,
-    //   body,
-    //   flavor,
-    //   aftertaste
-    // })
     
     createReview({
       user,

@@ -10,16 +10,39 @@ import SearchBar from './search';
 export default class UserNav extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {};
+        this.addShopRatingsToState = this.addShopRatingsToState.bind(this);
         this.formatTopShops = this.formatTopShops.bind(this);
     }
 
     componentDidMount() {
-      this.props.fetchAllShops()
-        .then(shops => this.formatTopShops(shops.shops.data));
+      const { fetchAllShops, fetchAllShopReviews } = this.props;
+      fetchAllShops()
+        .then(() => fetchAllShopReviews()
+        .then(() => this.addShopRatingsToState())
+      );
     }
 
-    formatTopShops(shops) {
-      // debugger
+    addShopRatingsToState() {
+      this.props.shops.shops.forEach(shop => {
+        this.props.fetchShopDetails(shop.place_id)
+        .then(() => this.setState({ [shop.place_id]: this.props.shops.shopDetails.rating }, () => {
+          if (Object.values(this.state).length === this.props.shops.shops.length) {
+            this.formatTopShops();
+          }
+        }))
+      });
+    }
+
+    formatTopShops() {
+      // console.log(this.state)
+      const topShops = [];
+      const sorted = Object.values(this.state).sort((a, b) => b - a);
+      let i = 0;
+      Object.keys(this.state).forEach(shop => {
+        // console.log(shop)
+        // console.log(this.props.shops.shops)
+      });
     }
 
     render() {
@@ -29,15 +52,11 @@ export default class UserNav extends React.Component {
               <p className='shops-show-left-title'>Top Rated Coffee Shops</p>
             </div>
             <div className='shops-show-center'>
-
             </div>
             <div className='shops-show-right'>
                 <SearchBar props={this.props} />
             </div>
-
           </div>
-
-
         )
     }
     

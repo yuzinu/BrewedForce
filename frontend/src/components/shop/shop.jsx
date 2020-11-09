@@ -91,7 +91,9 @@ export default class Shop extends React.Component {
         for (let i = 0; i < reviews.length; i++) {
             sum += reviews[i].rating
         }
-        return sum/this.props.shopReviews.length;
+
+        let average = sum/this.props.shopReviews.length;
+        return average;
     }
 
     renderReviews() {
@@ -104,7 +106,7 @@ export default class Shop extends React.Component {
         return reviews
             .map((review, i) => {
                 return (
-                    <div className='review'>
+                    <div className='review' key={review._id}>
                         <div className='review-rating'><ShopRatings size={'25px'} ratings={review.rating} /></div>
                         <div className='review-sub-row'>
                             <div className='review-user'>{review.user.username}</div>
@@ -118,6 +120,7 @@ export default class Shop extends React.Component {
     }
 
     renderReviewDate(date) {
+        if (typeof date === 'undefined') return '';
         date = date.split('T')[0].split('-').reverse();
         let render_date = date.join('/').split('/');
         [ render_date[0], render_date[1] ] = [ date[1], date[0] ]
@@ -208,6 +211,7 @@ export default class Shop extends React.Component {
                                 className='score-modal'
                                 overlayClassName='score-modal-background'
                                 onRequestClose={this.handleCloseModal}
+                                ariaHideApp={false}
                               >
                                 <ReviewFormContainer shop={shopId} closeModal={this.handleCloseModal}/>
                               </ReactModal>

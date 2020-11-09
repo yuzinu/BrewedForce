@@ -29,6 +29,8 @@ const shopsReducer = (state = {}, action) => {
             nextState = {}
             return nextState;
         case RECEIVE_ALL_SHOPS:
+          nextState['shops'] = action.shops.data;
+          return nextState;
         default:
             return state;
     }
