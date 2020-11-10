@@ -81,7 +81,7 @@ router.post('/',
         // console.log(review.user);
         // console.log(review.shop);
         // if (!hasReview) {
-        Review.exists({ user: req.body.user.id })
+        Review.exists({ user: req.body.user.id, shop: req.body.shop })
           .then(hasReview => {
             debugger;
             if (hasReview === false) {
