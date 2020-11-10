@@ -49,16 +49,16 @@ export default class UserNav extends React.Component {
         return (
           <div className='shops-show'>
             <div className='shops-show-left'>
-              <p>Top Rated Coffee Shops</p>
-              <ul>
+              <p className='shops-show-left-title'>Top Rated Coffee Shops</p>
+              <ul className='top-shops'>
                 {this.state.topShops.map(shop => {
                   return (
-                    <li key={shop.place_id}>
-                      <Link to={`/shops/${shop.place_id}`}>
-                        <span>{this.state[shop.place_id]}</span>
-                        <span> - {shop.rating}</span>
-                      </Link>
-                    </li>
+                    <Link to={`/shops/${shop.place_id}`} className='top-shop-link'>
+                      <li key={shop.place_id} className='top-shop'>
+                        <span className='top-shop-name'>{this.state[shop.place_id]}</span>
+                        <span className='top-shop-rating'>{shop.rating}/5</span>
+                      </li>
+                    </Link>
                   )
                 })}
               </ul>
