@@ -11,38 +11,35 @@ export default class UserNav extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
-        this.addShopRatingsToState = this.addShopRatingsToState.bind(this);
         this.formatTopShops = this.formatTopShops.bind(this);
+        this.compareRatings = this.compareRatings.bind(this);
     }
 
     componentDidMount() {
-      const { fetchAllShops, fetchAllShopReviews } = this.props;
-      fetchAllShops()
-        .then(() => fetchAllShopReviews()
-        .then(() => this.addShopRatingsToState())
-      );
+      this.props.fetchAllShops()
+        .then(() => this.formatTopShops());
     }
-
-    addShopRatingsToState() {
-      this.props.shops.shops.forEach(shop => {
-        this.props.fetchShopDetails(shop.place_id)
-        .then(() => this.setState({ [shop.place_id]: this.props.shops.shopDetails.rating }, () => {
-          if (Object.values(this.state).length === this.props.shops.shops.length) {
-            this.formatTopShops();
-          }
-        }))
-      });
-    }
-
+    
     formatTopShops() {
-      // console.log(this.state)
       const topShops = [];
-      const sorted = Object.values(this.state).sort((a, b) => b - a);
-      let i = 0;
-      // Object.keys(this.state).forEach(shop => {
-      // });
+      let min;
+      console.log(this.props.shops.shops)
+      const sorted = this.props.shops.shops.sort(this.compareRatings)
+      console.log(sorted)
     }
 
+    compareRatings(a, b) {
+      const aRating = a.rating;
+      const bRating = b.rating;
+      let comp = 0;
+      if (aRating > bRating) {
+        comp = -1;
+      } else if (aRating < bRating) {
+        comp = 1;
+      }
+      return comp;
+    }
+    
     render() {
         return (
           <div className='shops-show'>
