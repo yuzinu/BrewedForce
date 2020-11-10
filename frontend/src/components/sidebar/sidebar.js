@@ -22,7 +22,7 @@ class SideBar extends React.Component {
                 <Link className="sidebar-buttons-link" to={`/users/${user.id}`}>Profile</Link>
                 <Link className="sidebar-buttons-link" to={'/coffees'}>Coffees</Link>
                 <Link className="sidebar-buttons-link" to={'/shops'}>Shops</Link>
-                <Link className="sidebar-buttons-link" to={'/roasters'}>Roasters</Link>
+                {/* <Link className="sidebar-buttons-link" to={'/roasters'}>Roasters</Link> */}
                 <button className="sidebar-buttons-link" onClick={this.logoutUser}>Logout</button>
             </div>
         );
@@ -31,7 +31,7 @@ class SideBar extends React.Component {
             <div className="sidebar-buttons">
               <Link className="sidebar-buttons-link" to={'/coffees'}>Coffees</Link>
               <Link className="sidebar-buttons-link" to={'/shops'}>Shops</Link>
-              <Link className="sidebar-buttons-link" to={'/roasters'}>Roasters</Link>
+              {/* <Link className="sidebar-buttons-link" to={'/roasters'}>Roasters</Link> */}
               <Link className="sidebar-buttons-link" to={'/login'}>Login</Link>
               <Link className="sidebar-buttons-link" to={'/signup'}>Signup</Link>
             </div>
