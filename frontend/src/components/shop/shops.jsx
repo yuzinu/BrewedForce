@@ -21,11 +21,14 @@ export default class UserNav extends React.Component {
     }
     
     formatTopShops() {
-      const topShops = [];
-      let min;
-      console.log(this.props.shops.shops)
       const sorted = this.props.shops.shops.sort(this.compareRatings)
-      console.log(sorted)
+      sorted.splice(6)
+      this.setState({ topShops: sorted });
+      sorted.map(shop => {
+        console.log(shop.place_id)
+        return this.props.fetchShopDetails(shop.place_id)
+          .then(() => this.setState({ [shop.place_id]: this.props.shops.shopDetails.name}));
+      })
     }
 
     compareRatings(a, b) {
@@ -41,10 +44,24 @@ export default class UserNav extends React.Component {
     }
     
     render() {
+        if (typeof this.state.topShops === 'undefined') return null;
+        console.log(this.state);
         return (
           <div className='shops-show'>
             <div className='shops-show-left'>
-              <p className='shops-show-left-title'>Top Rated Coffee Shops</p>
+              <p>Top Rated Coffee Shops</p>
+              <ul>
+                {this.state.topShops.map(shop => {
+                  return (
+                    <li key={shop.place_id}>
+                      <Link to={`/shops/${shop.place_id}`}>
+                        <span>{this.state[shop.place_id]}</span>
+                        <span> - {shop.rating}</span>
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
             </div>
             <div className='shops-show-center'>
             </div>
