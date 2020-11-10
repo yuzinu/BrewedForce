@@ -30,13 +30,11 @@
   outline: none;
   box-sizing: border-box;
   border: 1px solid black;
-  border-radius: 5px;
   background-color: rgba(255,255,255,.8);
 }
 
 .search-input-open {
   padding: 10px;
-  border-radius: 5px 5px 0 0;
   border-bottom: none;
 }
 
@@ -46,7 +44,6 @@
   box-sizing: border-box;
   border: 1px solid black;
   border-top: none;
-  border-radius: 0 0 5px 5px;
   display: flex;
   flex-wrap: wrap;
   background-color: rgba(255,255,255,.8);
@@ -74,7 +71,6 @@
 .results-box-body img {
   height: 150px;
   width: 150px;
-  border-radius: 5px;
   border: 1px solid black;
 }
 
@@ -104,10 +100,50 @@
   height: 690px;
   background-color: rgba(255,255,255,.8);
   border: 1px solid black;
-  border-radius: 5px;
 }
 
 .shops-show-left-title {
-  margin: 20px auto;
+  margin: 50px auto 0 auto;
   text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.top-shops {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px 20px 0 20px;
+}
+
+.top-shop-link {
+  text-decoration: none;
+}
+
+.top-shop {
+  height: 150px;
+  width: 150px;
+  margin: 35px 0 0 0;
+  display: inline-block;
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('https://i.imgur.com/vWNx8i5.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  box-shadow: -4px 5px 7px 0px black;
+}
+
+.top-shop-name {
+  text-align: center;
+  margin-top: 20px;
+  height: 16px;
+}
+
+.top-shop-rating {
+  margin-top: 30px;
+  font-size: 35px;
+  font-weight: 600;
 }
