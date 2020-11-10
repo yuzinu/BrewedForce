@@ -19,7 +19,8 @@ export default class Shop extends React.Component {
             price_level: null,
             coffees: [],
             website: '',
-            phone_number: ''
+            phone_number: '',
+            image: ''
         };
         this.calculateRatings = this.calculateRatings.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -52,19 +53,25 @@ export default class Shop extends React.Component {
                 ratings: this.calculateRatings(),
                 coffees: this.props.shopCoffees || [],
                 website: this.props.shopDetails.website,
-                phone_number: this.props.shopDetails.formatted_phone_number
-            }, () => this.props.fetchShopReviews(this.state.id)))}
+                phone_number: this.props.shopDetails.formatted_phone_number,
+                image: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.props.shopDetails.photos[0].photo_reference}&sensor=false&key=AIzaSyDvUSqdDw6TdxHjNZudz295QAu9ZWjYm0k`
+            }, () => this.props.fetchShopReviews(this.state.id)));
+        }
         else {
             this.props.fetchShopCoffees(this.props.match.params.shopId)
-            .then(this.props.fetchShopDetails(this.props.match.params.shopId))
+            .then(this.props.fetchShopDetails(this.props.match.params.shopId));
         }
     // })
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.shopDetails !== undefined
-            && (prevProps.shopDetails === undefined 
-                || (prevProps.shopDetails !== undefined && this.props.shopDetails.name !== prevProps.shopDetails.name))) {
+        if (this.props.shopDetails !== undefined && 
+                (prevProps.shopDetails === undefined || 
+                (prevProps.shopDetails !== undefined && 
+                    this.props.shopDetails.name !== prevProps.shopDetails.name)
+                )
+            )
+            {
             this.setState({
                 name: this.props.shopDetails.name,
                 id: this.props.match.params.shopId,
@@ -73,8 +80,9 @@ export default class Shop extends React.Component {
                 ratings: this.calculateRatings(),
                 coffees: this.props.shopCoffees || [],
                 website: this.props.shopDetails.website,
-                phone_number: this.props.shopDetails.formatted_phone_number
-            }, () => this.props.fetchShopReviews(this.state.id))
+                phone_number: this.props.shopDetails.formatted_phone_number,
+                image: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.props.shopDetails.photos[0].photo_reference}&sensor=false&key=AIzaSyDvUSqdDw6TdxHjNZudz295QAu9ZWjYm0k`
+            }, () => this.props.fetchShopReviews(this.state.id));
         }
     }
 
@@ -89,7 +97,7 @@ export default class Shop extends React.Component {
         let sum = 0;
 
         for (let i = 0; i < reviews.length; i++) {
-            sum += reviews[i].rating
+            sum += reviews[i].rating;
         }
 
         let average = sum/this.props.shopReviews.length;
@@ -162,27 +170,35 @@ export default class Shop extends React.Component {
         const shopId = this.props.match.params.shopId
         const phone = <FontAwesomeIcon className='phone-icon' icon={faPhone}/>
         const browser = <FontAwesomeIcon className='browser-icon' icon={faWindowMaximize} />
+
         if(this.state.name === '') return null;
         return (
             <div className='main-container'>
-                <div className='shop-container'>
-                        <div className='shop-description'>
-                            <h1 className='shop-title'>{this.state.name}</h1>
-                                <div className='ratings-container'>
-                                    <ShopRatings size={'35px'} ratings={this.calculateRatings()}/>
-                                    <div className='num-reviews'>{this.numReviews()} Reviews</div>
-                                </div>
-                                <div className='address'>
-                                    <div>{this.state.location}</div>
-                                </div>
-                        </div>
-                        <div className='shop-description-2'>
-                            <div className='shop-website'>
-                                {browser}<a href={this.state.website} className='link'>{this.renderWebsite()}</a>
-                            </div>
-                        <div className='shop-number'>{phone}{this.state.phone_number}</div>
+                {/* <div className='shop-header-background' style={{backgroundImage: `url(${this.state.image})`}}> */}
+                    <div className='shop-header'>
+                        <div className="shop-header-image-container">
+                            <img className="shop-header-image" src={this.state.image} />
                         </div>
 
+                        <div className="shop-header-details">
+                            <div className='shop-header-details-left'>
+                                <h1 className='shop-header-details-left-title'>{this.state.name}</h1>
+                                <div className='shop-header-ratings-container'>
+                                    <ShopRatings size={'35px'} ratings={this.calculateRatings()}/>
+                                    <div className='shop-header-ratings-container-num-reviews'>{this.numReviews() === 1 ? `${this.numReviews()} Review` : `${this.numReviews()} Reviews`} </div>
+                                </div>
+                                <div className='shop-header-details-left-address'>
+                                    <div>{this.state.location}</div>
+                                </div>
+                            </div>
+                            <div className='shop-header-details-right'>
+                                <div className='shop-header-details-right-website'>
+                                    {browser}<a href={this.state.website} className='link'>{this.renderWebsite()}</a>
+                                </div>
+                                <a href={`tel:${this.state.phone_number}`} className='shop-header-details-right-number'>{phone}{this.state.phone_number}</a>
+                            </div>
+                        </div>
+                    {/* </div> */}
                 </div>
                 <div className='bottom-container'>
                     <div className='bottom-container-sub'>
